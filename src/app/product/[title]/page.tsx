@@ -1,47 +1,72 @@
 import React from 'react';
+import { Params } from 'next/dist/shared/lib/router/utils/route-matcher';
+import { notFound } from 'next/navigation';
+
+import { getSingleProduct } from '@/shopify/queries/getSingleProduct';
 import ProductDataProvider from '@/components/custom/product/ProductDataProvider';
-
-import { getData } from '@/shopify/getData';
 import ProductContent from '@/components/custom/product/ProductContent';
+import { getRelatesProducts } from '@/shopify/queries/getRelatedProducts';
 
-const GRAPHQL_QUERY = `#graphql
-  query MyQuery {
-  product(id: "gid://shopify/Product/9392009314629") {
-    title
-    description
-    variants(first: 100) {
-      edges {
-        node {
-          id
-          title
-          price {
-            amount
-            currencyCode
-          }
-          selectedOptions {
-            name
-            value
-          }
-        }
-      }
-    }
-    featuredImage {
-        altText
-        url
-        height
-        width
-      }
+export const revalidate = 3600;
+
+export default async function ProductPage({ params }: { params: Params }) {
+  const product = await getSingleProduct(params.title);
+  const relatedProducts = await getRelatesProducts(
+    product?.data?.productByHandle?.id
+  );
+
+  // console.log(relatedProducts.data.productRecommendations);
+
+  if (!product?.data?.productByHandle) {
+    notFound();
   }
-}
-`;
-
-export default async function ProductPage() {
-  const { props } = await getData(GRAPHQL_QUERY);
-  // console.log(props.data);
 
   return (
-    <ProductDataProvider product={props.data.product}>
+    <ProductDataProvider
+      product={product.data.productByHandle}
+      relatedProducts={relatedProducts.data.productRecommendations}
+    >
       <ProductContent />
     </ProductDataProvider>
   );
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { title: string };
+}) {
+  const props = await getSingleProduct(params.title);
+  const product = props?.data?.productByHandle;
+  const productTitle = product?.seo?.title
+    ? product?.seo?.title
+    : product?.title;
+  const productDescription = product?.seo?.description
+    ? product?.seo?.description
+    : product?.description;
+  const productImage = product.images.edges[0]
+    ? product.images.edges[0].node.url
+    : '/no-image.webp';
+
+  return {
+    title: productTitle,
+    description: `${productDescription.substr(0, 130)}`,
+
+    metadataBase: new URL('https://www.finswimeershop.com'),
+    openGraph: {
+      title: productTitle,
+      description: productDescription,
+      url: `https://moccotech.com/product/${params.title}`,
+      siteName: 'Finswimmershop',
+      images: [
+        {
+          url: productImage,
+          width: 800,
+          height: 600,
+        },
+      ],
+      locale: 'en_US',
+      type: 'website',
+    },
+  };
 }

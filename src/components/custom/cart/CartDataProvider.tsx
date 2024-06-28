@@ -7,16 +7,5 @@ export default function CartDataProvider({
 }: {
   children: ReactNode;
 }) {
-  return (
-    <CartProvider
-      onLineAdd={() => {
-        console.log('a line is being added');
-      }}
-      onLineAddComplete={() => {
-        console.log('a line has been added');
-      }}
-    >
-      {children}
-    </CartProvider>
-  );
+  return <CartProvider>{children}</CartProvider>;
 }

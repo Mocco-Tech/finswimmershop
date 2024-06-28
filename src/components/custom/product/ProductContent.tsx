@@ -1,77 +1,68 @@
 'use client';
 
-import {
-  AddToCartButton,
-  CartCheckoutButton,
-  Money,
-  useCart,
-  useProduct,
-} from '@shopify/hydrogen-react';
+import { Money, useProduct } from '@shopify/hydrogen-react';
+import React, { useContext } from 'react';
+
+import ImageGallery from './ImageGallery';
+import ProductDetails from './ProductDetails';
+import { RelatedProductsContext } from './ProductDataProvider';
 import Image from 'next/image';
-import React from 'react';
+import Link from 'next/link';
 
 export default function ProductContent() {
-  const { product, variants, setSelectedVariant, selectedVariant } =
-    useProduct();
-  const price = product?.variants?.edges?.[0]?.node?.price;
+  const { product, options, selectedVariant, setSelectedOption } = useProduct();
 
-  const {
-    status,
-    cartCreate,
-    totalQuantity,
-    checkoutUrl,
-    buyerIdentity,
-    error,
-  } = useCart();
-
-  const merchandise = { merchandiseId: selectedVariant?.id };
+  const relatedProducts = useContext(RelatedProductsContext);
 
   return (
-    <>
-      <h1>{product?.title}</h1>
-      <Money data={selectedVariant ? selectedVariant?.price! : price!} />
-      {product?.featuredImage && (
-        <Image
-          src={product?.featuredImage?.url!}
-          alt={`${product?.title} image`}
-          width={500}
-          height={500}
-          className=""
-          priority
+    <div className="md:p-4">
+      <div className="bg-slate-100 w-full h-fit p-2 md:p-4 rounded-t-none rounded-b-2xl sm:rounded-2xl  flex flex-col md:flex-row items-end gap-5">
+        <ImageGallery
+          //  @ts-ignore
+          images={product?.images?.edges!}
+          productTitle={product?.title!}
         />
-      )}
-      {variants?.map((variant) => (
-        <button
-          onClick={() => setSelectedVariant(variant!)}
-          key={variant?.id}
-          className={`mr-2 w-10 h-8 rounded-lg ${
-            selectedVariant?.id === variant?.id ? 'bg-sky-500' : 'bg-sky-300'
-          }`}
-        >
-          {variant?.title}
-        </button>
-      ))}
-      <AddToCartButton
-        variantId={selectedVariant?.id}
-        className="bg-indigo-500 px-4 py-2 rounded-lg text-slate-50"
-        // onClick={() => cartCreate()}
-      >
-        Add to cart
-      </AddToCartButton>
-      <CartCheckoutButton>Checkout</CartCheckoutButton>
-      <div>
-        Cart Status: {status}
-        <p>{totalQuantity}</p>
-        <p>{checkoutUrl}</p>
-        <p>{error}</p>
-        {/* <button
-          onClick={() =>
-            cartCreate({ attributes: [], buyerIdentity: buyerIdentity })
-          }
-        >
-          Add Line
-        </button> */}
+
+        <ProductDetails
+          //  @ts-ignore
+          product={product}
+          options={options}
+          //  @ts-ignore
+          selectedVariant={selectedVariant}
+          setSelectedOption={setSelectedOption}
+        />
       </div>
-    </>
+      <div className="mt-10 px-2">
+        <h3 className="uppercase font-heading text-2xl tracking-wide text-slate-700 mb-4">
+          You may also like
+        </h3>
+        <div className="w-full flex gap-3 overflow-x-auto no-scrollbar">
+          {relatedProducts?.map((product) => {
+            return (
+              <Link
+                href={`/product/${product.handle}`}
+                key={product.id}
+                className="block w-1/2 lg:w-1/4 flex-shrink-0 bg-slate-50 rounded-lg p-2 lg:p-4"
+              >
+                <Image
+                  src={product.images.edges?.[0].node.url}
+                  alt={product.title}
+                  width={500}
+                  height={500}
+                  className="w-full rounded-md mb-2"
+                />
+                <h4 className="underline text-slate-600 mb-2">
+                  {product.title}
+                </h4>
+                <Money
+                  data={product.priceRange.minVariantPrice}
+                  className="text-slate-600"
+                />
+              </Link>
+            );
+          })}
+        </div>
+      </div>
+    </div>
   );
 }

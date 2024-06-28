@@ -1,10 +1,22 @@
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
+import { Jost, Montserrat } from 'next/font/google';
 import './globals.css';
 import CartDataProvider from '@/components/custom/cart/CartDataProvider';
 import ShopifyDataProvider from '@/components/custom/ShopifyDataProvider';
+import Header from '@/components/custom/header/Header';
+import { Toaster } from '@/components/ui/sonner';
 
-const inter = Inter({ subsets: ['latin'] });
+const heading = Jost({
+  subsets: ['latin'],
+  weight: ['300', '400', '500', '600'],
+  variable: '--font-heading',
+});
+
+const body = Montserrat({
+  subsets: ['latin'],
+  weight: ['300', '400', '500', '600'],
+  variable: '--font-body',
+});
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -18,9 +30,18 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={`${heading.variable} ${body.variable} font-body`}>
         <ShopifyDataProvider>
-          <CartDataProvider>{children}</CartDataProvider>
+          <CartDataProvider>
+            <Header />
+            {children}
+            <Toaster
+              position="top-center"
+              richColors={true}
+              offset={10}
+              duration={3000}
+            />
+          </CartDataProvider>
         </ShopifyDataProvider>
       </body>
     </html>
