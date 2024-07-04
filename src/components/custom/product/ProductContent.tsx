@@ -1,18 +1,18 @@
 'use client';
 
-import { Money, useProduct } from '@shopify/hydrogen-react';
+import { useProduct } from '@shopify/hydrogen-react';
 import React, { useContext } from 'react';
 
 import ImageGallery from './ImageGallery';
 import ProductDetails from './ProductDetails';
 import { RelatedProductsContext } from './ProductDataProvider';
-import Image from 'next/image';
-import Link from 'next/link';
+import ProductCard from '../collection/ProductCard';
 
 export default function ProductContent() {
   const { product, options, selectedVariant, setSelectedOption } = useProduct();
 
   const relatedProducts = useContext(RelatedProductsContext);
+
 
   return (
     <div className="md:p-4">
@@ -39,26 +39,15 @@ export default function ProductContent() {
         <div className="w-full flex gap-3 overflow-x-auto no-scrollbar">
           {relatedProducts?.map((product) => {
             return (
-              <Link
-                href={`/product/${product.handle}`}
-                key={product.id}
-                className="block w-1/2 lg:w-1/4 flex-shrink-0 bg-slate-50 rounded-lg p-2 lg:p-4"
-              >
-                <Image
-                  src={product.images.edges?.[0].node.url}
-                  alt={product.title}
-                  width={500}
-                  height={500}
-                  className="w-full rounded-md mb-2"
+              <div key={product.title} className="w-1/2 lg:w-1/4">
+                <ProductCard
+                  price={product.priceRange.minVariantPrice}
+                  title={product.title}
+                  link={`${product.handle}`}
+                  imageFirst={product.images.edges?.[0]?.node?.url}
+                  imageSecond={product.images.edges?.[1]?.node?.url}
                 />
-                <h4 className="underline text-slate-600 mb-2">
-                  {product.title}
-                </h4>
-                <Money
-                  data={product.priceRange.minVariantPrice}
-                  className="text-slate-600"
-                />
-              </Link>
+              </div>
             );
           })}
         </div>

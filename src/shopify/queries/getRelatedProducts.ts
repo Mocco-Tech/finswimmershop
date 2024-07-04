@@ -5,7 +5,7 @@ export async function getRelatesProducts(handle: string) {
     query RelatedProducts {
         productRecommendations(productId: "${handle}") {
             id
-            images(first: 10) {
+            images(first: 2) {
             edges {
                 node {
                 id

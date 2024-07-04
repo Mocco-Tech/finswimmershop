@@ -2,10 +2,11 @@ import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { buttonVariants } from '@/components/ui/button';
+import { SheetClose } from '@/components/ui/sheet';
 
 export default function EmptyCart() {
   return (
-    <div className="flex flex-col justify-center items-center gap-5 px-4">
+    <div className="flex flex-col justify-center items-center gap-5 px-4 h-full">
       <Image
         src="/empty-cart.png"
         alt="Empty cart image"
@@ -21,9 +22,11 @@ export default function EmptyCart() {
           There are no products in your cart
         </p>
       </div>
-      <Link href="/shop" className={buttonVariants({ className: 'w-full' })}>
-        Shop all
-      </Link>
+      <SheetClose asChild>
+        <Link href="/shop" className={buttonVariants({ className: 'w-full' })}>
+          Shop all
+        </Link>
+      </SheetClose>
     </div>
   );
 }

@@ -9,7 +9,7 @@ export default function DeleteItemBtn() {
       className="p-2 rounded-full bg-slate-100/80 hover:bg-slate-200/80 text-slate-500/80 text-md duration-150"
       adjust="remove"
       onClick={() => {
-        toast('Item deleted form the cart');
+        toast('Items has bee removed from the cart');
       }}
     >
       <RiDeleteBin5Line className="text-light" />

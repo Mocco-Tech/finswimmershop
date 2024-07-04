@@ -8,7 +8,6 @@ export async function getSingleProduct(handle: string) {
       id
       title
       description
-      descriptionHtml
       productType
       deliveryTime: metafield(namespace: "custom", key: "delivery_time") {
         value

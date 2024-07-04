@@ -15,8 +15,6 @@ export default async function ProductPage({ params }: { params: Params }) {
     product?.data?.productByHandle?.id
   );
 
-  // console.log(relatedProducts.data.productRecommendations);
-
   if (!product?.data?.productByHandle) {
     notFound();
   }

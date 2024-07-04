@@ -1,10 +1,10 @@
 import React from 'react';
-import { Product } from '@shopify/hydrogen-react/storefront-api-types';
 import { AddToCartButton, Money } from '@shopify/hydrogen-react';
 import { toast } from 'sonner';
 import { buttonVariants } from '@/components/ui/button';
 import AccordionSection from './product-details/AccordionSection';
 import OptionsSelection from './product-details/OptionsSelection';
+import { ProductType } from '@/types/ProductType';
 
 type SelectedVariantType = {
   id: string;
@@ -12,13 +12,14 @@ type SelectedVariantType = {
   price: { amount: string; currencyCode: string };
   selectedOptions: { name: string; value: 'XS' }[];
 };
+
 export default function ProductDetails({
   product,
   selectedVariant,
   setSelectedOption,
   options,
 }: {
-  product: Product;
+  product: ProductType;
   selectedVariant: SelectedVariantType;
   setSelectedOption: (name: string, value: string) => void;
   options?: any;
@@ -68,9 +69,7 @@ export default function ProductDetails({
         </AddToCartButton>
         <AccordionSection
           description={product?.description}
-          // @ts-ignore
           deliveryTime={product?.deliveryTime?.value}
-          // @ts-ignore
           manufacturingTime={product?.manufacturingTime?.value}
         />
       </div>

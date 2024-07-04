@@ -1,9 +1,6 @@
 'use client';
 
-import {
-  ShopifyProvider,
-  createStorefrontClient,
-} from '@shopify/hydrogen-react';
+import { ShopifyProvider } from '@shopify/hydrogen-react';
 import React, { ReactNode } from 'react';
 
 export default function ShopifyDataProvider({
