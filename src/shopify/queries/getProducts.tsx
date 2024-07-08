@@ -3,7 +3,7 @@ import { getData } from '../getData';
 export async function getProducts(cursor?: string) {
   const Products = `#graphql
     query Products {
-        products(first: 20) {
+        products(first: 200) {
         edges {
           cursor
           node {

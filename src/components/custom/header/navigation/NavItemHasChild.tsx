@@ -15,7 +15,12 @@ export default function NavItemHasChild({
   children,
 }: {
   link: string;
-  items: { id: string; title: string; url: string }[];
+  items: {
+    id: string;
+    title: string;
+    url: string;
+    items: { id: string; title: string; url: string }[];
+  }[];
   children: ReactNode;
 }) {
   return (
@@ -36,16 +41,39 @@ export default function NavItemHasChild({
         align="start"
       >
         <ul className="w-full">
-          {items.map((childItem) => (
-            <li key={childItem.title}>
-              <Link
-                href={cutMenuLink(childItem.url)}
-                className="block px-4 py-2 hover:bg-slate-50 text-slate-700"
-              >
-                {childItem.title}
-              </Link>
-            </li>
-          ))}
+          {items.map((childItem) => {
+            return childItem.items.length > 0 ? (
+              <li key={childItem.title}>
+                <Link
+                  href={cutMenuLink(childItem.url)}
+                  className="block px-4 py-2 hover:bg-slate-50 text-slate-700 font-medium"
+                >
+                  {childItem.title}
+                </Link>
+                <ul className="">
+                  {childItem.items.map((item) => (
+                    <li key={item.id}>
+                      <Link
+                        href={cutMenuLink(item.url)}
+                        className="pl-10 block px-4 py-2 hover:bg-slate-50 text-slate-700"
+                      >
+                        {item.title}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </li>
+            ) : (
+              <li key={childItem.title}>
+                <Link
+                  href={cutMenuLink(childItem.url)}
+                  className="block px-4 py-2 hover:bg-slate-50 text-slate-700"
+                >
+                  {childItem.title}
+                </Link>
+              </li>
+            );
+          })}
         </ul>
       </HoverCardContent>
     </HoverCard>

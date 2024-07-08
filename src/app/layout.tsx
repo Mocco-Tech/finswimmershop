@@ -5,6 +5,7 @@ import CartDataProvider from '@/components/custom/cart/CartDataProvider';
 import ShopifyDataProvider from '@/components/custom/ShopifyDataProvider';
 import Header from '@/components/custom/header/Header';
 import { Toaster } from '@/components/ui/sonner';
+import NextTopLoader from 'nextjs-toploader';
 import Footer from '@/components/custom/footer/Footer';
 import { getMenu } from '@/shopify/queries/getMenu';
 import { getLocalizations } from '@/shopify/queries/getLocalizations';
@@ -41,6 +42,7 @@ export default async function RootLayout({
       <body className={`${heading.variable} ${body.variable} font-body`}>
         <ShopifyDataProvider>
           <CartDataProvider>
+            <NextTopLoader color="#0ea5e9" showSpinner={false} />
             <Header
               collections={collections.data.menu}
               menu={menu.data.menu}

@@ -3,6 +3,7 @@ import CartHeaderItem from '../cart/CartHeaderItem';
 import LanguageBtn from './LanguageBtn';
 import { LanguageType } from '@/types/LanguageType';
 import HeaderBtn from './HeaderBtn';
+import SearchBtn from './SearchBtn';
 
 export default function HeaderButtons({
   languages,
@@ -13,7 +14,8 @@ export default function HeaderButtons({
 }) {
   return (
     <div className="flex items-center gap-3">
-      <LanguageBtn
+      <SearchBtn />
+      {/* <LanguageBtn
         className="hidden md:block"
         languages={languages}
         currentLanguage={currentLanguage}
@@ -21,7 +23,7 @@ export default function HeaderButtons({
         <HeaderBtn className="font-heading font-medium text-slate-700">
           <span key={currentLanguage.isoCode}>{currentLanguage.isoCode}</span>
         </HeaderBtn>
-      </LanguageBtn>
+      </LanguageBtn> */}
       <CartHeaderItem />
     </div>
   );

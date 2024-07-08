@@ -5,6 +5,11 @@ export function cutMenuLink(menuItem: string) {
   return url;
 }
 
+export function cutPagesMenuLink(menuItem: string) {
+  const url = menuItem.split(process.env.PUBLIC_STORE_DOMAIN! + '/pages/')[1];
+  return url;
+}
+
 export function isItemNew(publishDate: string) {
   const publishedAt = new Date(publishDate);
   const today = new Date();
@@ -19,11 +24,13 @@ export function getBrands(
 ) {
   let brands: { handle: string; name: string }[] = [];
   productsArray.forEach((element) => {
-    const brand = element.node.brand.references.edges[0].node;
-    brands.push({
-      handle: brand.handle,
-      name: brand.fields[0].value,
-    });
+    if (element.node.brand) {
+      const brand = element.node.brand.references.edges[0].node;
+      brands.push({
+        handle: brand.handle,
+        name: brand.fields[0].value,
+      });
+    }
   });
 
   const uniqueBrands: { handle: string; name: string }[] = brands.filter(

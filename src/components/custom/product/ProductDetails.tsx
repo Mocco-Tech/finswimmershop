@@ -32,7 +32,7 @@ export default function ProductDetails({
         options.length > 1 ? 'lg:min-h-[680px]' : 'lg:min-h-fit'
       }`}
     >
-      <div className="">
+      <div className="mb-4">
         <h1 className="text-slate-700 font-heading text-2xl font-normal mb-2">
           {product?.title}
         </h1>
@@ -41,7 +41,7 @@ export default function ProductDetails({
           {product?.collections?.edges?.[0]?.node?.title}
         </h2>
 
-        {options.length > 1 && (
+        {options.length > 0 && product?.variants?.edges?.length > 1 && (
           <OptionsSelection
             options={options}
             setSelectedOption={setSelectedOption}
@@ -68,7 +68,7 @@ export default function ProductDetails({
           Add to cart
         </AddToCartButton>
         <AccordionSection
-          description={product?.description}
+          description={product?.descriptionHtml?.toString()}
           deliveryTime={product?.deliveryTime?.value}
           manufacturingTime={product?.manufacturingTime?.value}
         />

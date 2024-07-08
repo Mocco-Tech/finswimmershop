@@ -1,10 +1,12 @@
 import React from 'react';
 
-import ProductCard from '@/components/custom/collection/ProductCard';
 import { getProducts } from '@/shopify/queries/getProducts';
 import { ProductType } from '@/types/ProductType';
 import ShopContent from '@/components/custom/shop/ShopContent';
 import { getSortedProducts } from '@/lib/helpers';
+import { Metadata } from 'next';
+
+export const revalidate = 3600;
 
 export default async function ShopPage({
   searchParams,
@@ -30,3 +32,27 @@ export default async function ShopPage({
 
   return <ShopContent products={products} productsAll={productsAll} />;
 }
+
+export const metadata: Metadata = {
+  title: 'Finswimmer Shop | Shop all',
+  description:
+    "Finswimming, Freeidivng and UW Hockey, UW Rugby gears from the world's leading manufacturers at best prices. Shop all - we ship worldwide.",
+
+  metadataBase: new URL('https://www.finswimmershop.com'),
+  openGraph: {
+    title: `Finswimmer Shop | Shop all`,
+    description:
+      "Finswimming, Freeidivng and UW Hockey, UW Rugby gears from the world's leading manufacturers at best prices. Shop all - we ship worldwide.",
+    url: `https://finswimmershop.com/shop`,
+    siteName: 'Finswimmer Shop',
+    images: [
+      {
+        url: '/empty-category.jpg',
+        width: 800,
+        height: 600,
+      },
+    ],
+    locale: 'en_US',
+    type: 'website',
+  },
+};

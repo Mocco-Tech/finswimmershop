@@ -25,7 +25,7 @@ export default function ProductCard({
   return (
     <Link
       href={`/product/${link}`}
-      className="block flex-shrink-0 bg-slate-50 rounded-lg p-2 lg:p-4 relative"
+      className="block flex-shrink-0 rounded-lg relative"
       onMouseEnter={() =>
         imageSecond ? setCurrentImage(imageSecond) : imageFirst
       }

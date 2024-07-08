@@ -30,11 +30,11 @@ export default function Sidebar({
   const brands = getBrands(productsAll!);
 
   return (
-    <aside className="w-full md:w-1/5 h-fit bg-slate-50 rounded-xl p-6">
+    <aside className="w-full md:w-1/5 h-fit rounded-xl p-2 md:p-6">
       <h3 className="text-slate-700 font-heading font-medium text-xl">
-        Filter and sort
+        Filters
       </h3>
-      <Accordion type="multiple" defaultValue={['item-1']}>
+      <Accordion type="multiple">
         <AccordionItem value="item-1">
           <AccordionTrigger className="text-slate-700 font-heading font-normal">
             Brand

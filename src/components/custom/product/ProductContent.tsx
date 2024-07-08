@@ -13,7 +13,6 @@ export default function ProductContent() {
 
   const relatedProducts = useContext(RelatedProductsContext);
 
-
   return (
     <div className="md:p-4">
       <div className="bg-slate-100 w-full h-fit p-2 md:p-4 rounded-t-none rounded-b-2xl sm:rounded-2xl  flex flex-col md:flex-row items-end gap-5">

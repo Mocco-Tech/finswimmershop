@@ -6,6 +6,8 @@ import { CollectionType } from '@/types/CollectionType';
 import CollectionContent from '@/components/custom/collection/CollectionContent';
 import { getSortedProducts } from '@/lib/helpers';
 
+export const revalidate = 3600;
+
 export default async function ProductCategoryPage({
   params,
   searchParams,
@@ -43,4 +45,45 @@ export default async function ProductCategoryPage({
       productsAll={collection.data.collectionByHandle.productsAll.edges}
     />
   );
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { handle: string };
+}) {
+  const props = await getCollection(params.handle);
+  const collectionSeo = props?.data?.collectionByHandle;
+
+  const seoTitle = collectionSeo?.seo.title
+    ? collectionSeo?.seo.title
+    : collectionSeo.title;
+  const seoDescription = collectionSeo?.seo.description
+    ? collectionSeo?.seo.description
+    : collectionSeo.description;
+  const image = collectionSeo?.image?.src
+    ? collectionSeo?.image?.src
+    : '/empty-category.jpg';
+
+  return {
+    title: `Finswimmer Shop | ${seoTitle}`,
+    description: seoDescription,
+
+    metadataBase: new URL('https://www.finswimmershop.com'),
+    openGraph: {
+      title: `Finswimmer Shop | ${seoTitle}`,
+      description: seoDescription,
+      url: `https://www.finswimmershop.com/collections/${params?.handle}`,
+      siteName: 'Finswimmer Shop',
+      images: [
+        {
+          url: image,
+          width: 800,
+          height: 600,
+        },
+      ],
+      locale: 'en_US',
+      type: 'website',
+    },
+  };
 }

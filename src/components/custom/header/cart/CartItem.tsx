@@ -7,6 +7,8 @@ import DeleteItemBtn from './DeleteItemBtn';
 import CartQtyButtons from './CartQtyButtons';
 
 export default function CartItem({ line }: { line: CartLine }) {
+  console.log(line?.merchandise);
+
   return (
     <div className="border-b border-slate-200 pb-5">
       <div className="flex items-start gap-3">
@@ -24,12 +26,16 @@ export default function CartItem({ line }: { line: CartLine }) {
             {line?.merchandise?.product?.title}
           </p>
           <p className="text-sm text-slate-500">
-            {line?.merchandise?.selectedOptions?.map((option, index) => (
-              <span key={option?.name}>
-                {index ? ' / ' : ''}
-                {option?.value}
-              </span>
-            ))}
+            {line?.merchandise?.selectedOptions?.map((option, index) => {
+              return (
+                option?.name !== 'Title' && (
+                  <span key={option?.name}>
+                    {index ? ' / ' : ''}
+                    {option?.value}
+                  </span>
+                )
+              );
+            })}
           </p>
           <Money
             className="mt-1 font-medium text-slate-700"

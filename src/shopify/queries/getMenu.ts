@@ -14,6 +14,11 @@ export async function getMenu(handle: string) {
                 id
                 title
                 url
+                items {
+                id
+                title
+                url
+            }
             }
         }
         }

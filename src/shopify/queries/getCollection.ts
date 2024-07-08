@@ -85,6 +85,10 @@ export async function getCollection(handle: string) {
             }
           }
         }
+        seo {
+          title
+          description
+        }
       }
   }`;
   const { props } = await getData(Collection);

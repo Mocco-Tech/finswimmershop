@@ -5,6 +5,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from '@/components/ui/accordion';
+import PageContent from '../../pages/PageContent';
 
 export default function AccordionSection({
   description,
@@ -22,7 +23,7 @@ export default function AccordionSection({
           Description
         </AccordionTrigger>
         <AccordionContent className="text-slate-400">
-          {description}
+          <PageContent rawHtmlContent={description} />
         </AccordionContent>
       </AccordionItem>
       <AccordionItem value="item-2">
