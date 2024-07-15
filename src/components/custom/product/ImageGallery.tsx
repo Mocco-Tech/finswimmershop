@@ -11,17 +11,19 @@ export default function ImageGallery({
   const [activeImage, setActiveImage] = useState(images?.[0]?.node?.url!);
 
   return (
-    <div className="flex flex-wrap gap-3 self-start h-full w-full lg:w-1/2">
+    <div className="flex flex-col sm:flex-row-reverse gap-3 w-full lg:w-1/2">
       <Image
         src={activeImage ? activeImage : '/no-image.webp'}
         alt={`${productTitle} main image`}
         width={800}
         height={800}
-        className="h-80 sm:h-96 md:h-80 lg:h-[525px] object-cover rounded-lg w-full"
+        className={`object-cover rounded-lg w-full ${
+          images?.length > 1 ? 'sm:w-5/6' : 'sm:w-full'
+        }`}
         priority
       />
       {images?.length! > 1 && (
-        <div className="flex overflow-x-auto md:grid-cols-5 gap-3 h-2/6 w-full">
+        <div className="flex flex-row w-full sm:flex-col sm:w-1/5 gap-2 overflow-x-auto">
           {images?.map((image) => (
             <Image
               key={image?.node?.id}
@@ -29,7 +31,7 @@ export default function ImageGallery({
               alt={`${productTitle} image`}
               width={400}
               height={400}
-              className="w-1/3 sm:w-1/4 lg:w-1/5 flex-shrink-0 rounded-lg object-cover cursor-pointer"
+              className="h-32 sm:h-24 w-full rounded-lg object-cover cursor-pointer"
               onClick={() => setActiveImage(image?.node?.url!)}
               priority
             />

@@ -10,12 +10,11 @@ import ProductCard from '../collection/ProductCard';
 
 export default function ProductContent() {
   const { product, options, selectedVariant, setSelectedOption } = useProduct();
-
   const relatedProducts = useContext(RelatedProductsContext);
 
   return (
     <div className="md:p-4">
-      <div className="bg-slate-100 w-full h-fit p-2 md:p-4 rounded-t-none rounded-b-2xl sm:rounded-2xl  flex flex-col md:flex-row items-end gap-5">
+      <div className="bg-slate-100 w-full h-fit p-2 md:p-4 rounded-t-none rounded-b-2xl sm:rounded-2xl flex flex-col lg:flex-row items-start gap-5">
         <ImageGallery
           //  @ts-ignore
           images={product?.images?.edges!}
@@ -38,7 +37,7 @@ export default function ProductContent() {
         <div className="w-full flex gap-3 overflow-x-auto no-scrollbar">
           {relatedProducts?.map((product) => {
             return (
-              <div key={product.title} className="w-1/2 lg:w-1/4">
+              <div key={product.title} className="w-1/2 lg:w-1/4 flex-shrink-0">
                 <ProductCard
                   price={product.priceRange.minVariantPrice}
                   title={product.title}

@@ -31,15 +31,14 @@ export default async function PagesPage({ params }: { params: Params }) {
               <li key={menuItem.id}>
                 <Link
                   href={cutMenuLink(menuItem.url)}
-                  className={`block peer hover:bg-slate-100 text-slate-600 px-4 py-3 duration-150 ${
+                  className={`block peer text-slate-600 px-4 py-3 duration-150 ${
                     cutPagesMenuLink(menuItem.url) === params.handle
                       ? 'bg-slate-100'
-                      : 'bg-white'
+                      : 'bg-white hover:bg-slate-100'
                   }`}
                 >
                   {menuItem.title}
                 </Link>
-                <div className="h-[1px] bg-slate-100 peer-hover:bg-slate-300 duration-150"></div>
               </li>
             ))}
           </ul>

@@ -1,6 +1,9 @@
 import ProductCard from '@/components/custom/collection/ProductCard';
+import CollectionCard from '@/components/custom/homepage/CollectionCard';
+import CollectionsGrid from '@/components/custom/homepage/CollectionsGrid';
 import { buttonVariants } from '@/components/ui/button';
 import { getCollection } from '@/shopify/queries/getCollection';
+import { getHomepageCollections } from '@/shopify/queries/getHomepageCollections';
 import { getPage } from '@/shopify/queries/getPage';
 import { getSearchProducts } from '@/shopify/queries/getSearchProducts';
 import { ProductType } from '@/types/ProductType';
@@ -18,6 +21,7 @@ export default async function Home({
 }) {
   const props = await getPage('home');
   const collectionProps = await getCollection('frontpage');
+  const homepageCollections = await getHomepageCollections();
   const bannerFields = props.data.pageByHandle.metafield.reference.fields;
   const [bannerBtnTitle, bannerCategory, bannerDesc, bannerImg, bannerTitle] =
     bannerFields;
@@ -25,27 +29,30 @@ export default async function Home({
   if (searchParams.search) {
     const products = await getSearchProducts(searchParams.search);
 
-    console.log(products.data.search.edges);
-    // return (
-    //   <div className="p-2 md:p-6">
-    //     <h1 className="mb-6 text-slate-500 text-lg">
-    //       Here are some results of your search:{' '}
-    //       <span className="font-medium">{searchParams.search}</span>
-    //     </h1>
-    //     <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 md:gap-5">
-    //       {products.data.search.edges.map((product: { node: ProductType }) => (
-    //         <ProductCard
-    //           key={product.node?.id}
-    //           imageFirst={product.node?.images?.edges?.[0]?.node.url}
-    //           imageSecond={product.node?.images?.edges?.[1]?.node?.url}
-    //           link={product.node?.handle}
-    //           price={product.node?.priceRange.minVariantPrice}
-    //           title={product.node?.title}
-    //         />
-    //       ))}
-    //     </div>
-    //   </div>
-    // );
+    return (
+      <div className="p-2 md:px-10 md:py-8">
+        <h1 className="mb-10 text-slate-500 text-lg">
+          Here are some results of your search:{' '}
+          <span className="font-medium text-slate-700">
+            {searchParams.search}
+          </span>
+        </h1>
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 md:gap-5">
+          {products.data.search.edges.map((product: { node: ProductType }) =>
+            Object.keys(product.node).length > 0 ? (
+              <ProductCard
+                key={product.node?.id}
+                imageFirst={product.node?.images?.edges?.[0]?.node.url}
+                imageSecond={product.node?.images?.edges?.[1]?.node?.url}
+                link={product.node?.handle}
+                price={product.node?.priceRange?.minVariantPrice}
+                title={product.node?.title}
+              />
+            ) : null
+          )}
+        </div>
+      </div>
+    );
   }
 
   return (
@@ -126,6 +133,8 @@ export default async function Home({
           </div>
         </div>
       </div>
+
+      <CollectionsGrid collections={homepageCollections} />
 
       <div className="py-10">
         <h3 className="text-slate-700 font-heading text-3xl mb-5">

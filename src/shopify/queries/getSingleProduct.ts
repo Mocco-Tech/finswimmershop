@@ -18,9 +18,48 @@ export async function getSingleProduct(handle: string) {
       }
       brand: metafield(namespace: "custom", key: "brand") {
         value
+        references(first: 10) {
+                edges {
+                  node {
+                    ... on Metaobject {
+                      id
+                      handle
+                      type
+                      fields {
+                        key
+                        value
+                      }
+                    }
+                  }
+                }
+              }
       }
       relatedProducts: metafield(namespace: "shopify--discovery--product_recommendation", key: "related_products") {
         value
+      }
+      metafields(identifiers: [
+        {key: "blade_stiffness", namespace: "custom"},
+        {key: "size", namespace: "custom"},
+        {key: "rails_color", namespace: "custom"}
+        ]) {
+        id
+        key
+        value
+        references(first: 50) {
+                edges {
+                  node {
+                    ... on Metaobject {
+                      id
+                      handle
+                      type
+                      fields {
+                        key
+                        value
+                      }
+                    }
+                  }
+                }
+              }
       }
       variants(first: 100) {
         edges {

@@ -7,8 +7,6 @@ import DeleteItemBtn from './DeleteItemBtn';
 import CartQtyButtons from './CartQtyButtons';
 
 export default function CartItem({ line }: { line: CartLine }) {
-  console.log(line?.merchandise);
-
   return (
     <div className="border-b border-slate-200 pb-5">
       <div className="flex items-start gap-3">
@@ -21,8 +19,8 @@ export default function CartItem({ line }: { line: CartLine }) {
             className="h-full w-full object-cover object-center"
           />
         </div>
-        <div className="w-full flex flex-col gap-1">
-          <p className="text-slate-700 text-sm">
+        <div className="w-full flex flex-col">
+          <p className="text-slate-700 text-sm mb-1">
             {line?.merchandise?.product?.title}
           </p>
           <p className="text-sm text-slate-500">
@@ -36,7 +34,18 @@ export default function CartItem({ line }: { line: CartLine }) {
                 )
               );
             })}
+            {line?.attributes?.map((option, index) => {
+              return (
+                option?.key !== 'Title' && (
+                  <span key={option?.key}>
+                    {index ? ' / ' : ''}
+                    {option?.value}
+                  </span>
+                )
+              );
+            })}
           </p>
+
           <Money
             className="mt-1 font-medium text-slate-700"
             data={line?.cost?.totalAmount!}

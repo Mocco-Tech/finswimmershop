@@ -1,4 +1,5 @@
-import React from 'react';
+'use client';
+import React, { useState } from 'react';
 import { AddToCartButton, Money } from '@shopify/hydrogen-react';
 import { toast } from 'sonner';
 import { buttonVariants } from '@/components/ui/button';
@@ -10,8 +11,10 @@ type SelectedVariantType = {
   id: string;
   title: string;
   price: { amount: string; currencyCode: string };
-  selectedOptions: { name: string; value: 'XS' }[];
+  selectedOptions: { name: string; value: string }[];
 };
+
+type SelectedAttributes = { key: string; value: string }[];
 
 export default function ProductDetails({
   product,
@@ -25,6 +28,18 @@ export default function ProductDetails({
   options?: any;
 }) {
   const price = product?.variants?.edges?.[0]?.node?.price;
+
+  const [selecteAttributes, setSelecteAttributes] =
+    useState<SelectedAttributes>([]);
+
+  function handleSelect(selectedKey: string, selectedValue: string) {
+    let currentAttribute: { key: string; value: string } = {
+      key: selectedKey,
+      value: selectedValue,
+    };
+
+    setSelecteAttributes([...selecteAttributes, currentAttribute]);
+  }
 
   return (
     <div
@@ -41,11 +56,83 @@ export default function ProductDetails({
           {product?.collections?.edges?.[0]?.node?.title}
         </h2>
 
-        {options.length > 0 && product?.variants?.edges?.length > 1 && (
+        {/* {options.length > 0 && product?.variants?.edges?.length > 1 && (
           <OptionsSelection
             options={options}
             setSelectedOption={setSelectedOption}
           />
+        )} */}
+
+        {/* 
+        On select has to be created and array of selected objects Type -> SelectedAttributes
+        Check the handleSelect() it has to be fixed.
+        */}
+        {product?.metafields.length > 0 && (
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2 gap-5">
+            {product?.metafields.map(
+              (select) =>
+                select && (
+                  <div
+                    key={select?.key}
+                    className="w-full flex flex-col justify-between items-start gap-1"
+                  >
+                    <label className="text-slate-600/80 text-xs capitalize">
+                      Select {select?.references?.edges[0].node.type}
+                    </label>
+                    <select
+                      onChange={(e) => handleSelect(select.key, e.target.value)}
+                      className="flex-1 w-full appearance-none border border-slate-200 rounded px-3 py-1 text-slate-600 font-light outline-none focus:ring-2 focus:ring-slate-700  duration-150"
+                      defaultValue="DEFAULT"
+                    >
+                      <option value="DEFAULT" disabled>
+                        Select option
+                      </option>
+                      {select?.references?.edges.map((option) => (
+                        <option
+                          key={option.node.handle}
+                          value={option.node.fields[0].value}
+                        >
+                          {option.node.fields[0].value}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                )
+            )}
+
+            {/*  */}
+            {options.length > 0 &&
+              product?.variants?.edges?.length > 1 &&
+              options?.map(({ name, values }) => (
+                <div
+                  key={name}
+                  className="w-full flex flex-col justify-between items-start gap-1"
+                >
+                  <label className="text-slate-600/80 text-xs">
+                    Select {name}
+                  </label>
+                  <select
+                    name={name}
+                    id={name}
+                    className="flex-1 w-full appearance-none border border-slate-200 rounded px-3 py-1 text-slate-600 font-light outline-none focus:ring-2 focus:ring-slate-700  duration-150"
+                    onChange={(e) => setSelectedOption(name, e.target.value)}
+                    defaultValue={'DEFAULT'}
+                  >
+                    <option value="DEFAULT" disabled>
+                      Select option
+                    </option>
+                    {values.map((value: string) => {
+                      return (
+                        <option key={value} value={value}>
+                          {value}
+                        </option>
+                      );
+                    })}
+                  </select>
+                </div>
+              ))}
+            {/*  */}
+          </div>
         )}
       </div>
 
@@ -57,16 +144,22 @@ export default function ProductDetails({
 
         <AddToCartButton
           variantId={selectedVariant?.id}
-          disabled={!selectedVariant?.id}
+          // Here should be added selected products options
+          attributes={selecteAttributes}
           className={buttonVariants({
             className: 'w-full',
           })}
           onClick={() => {
             toast.success(`${product?.title} added to the cart`);
           }}
+          // disabled={
+          //   selecteAttributes.length < product?.metafields.length
+          //   // !selectedVariant?.id
+          // }
         >
           Add to cart
         </AddToCartButton>
+
         <AccordionSection
           description={product?.descriptionHtml?.toString()}
           deliveryTime={product?.deliveryTime?.value}

@@ -1,4 +1,6 @@
-import React from 'react';
+'use client';
+
+import React, { useState } from 'react';
 import {
   Drawer,
   DrawerClose,
@@ -12,8 +14,12 @@ import HeaderBtn from './HeaderBtn';
 import { Search } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
+import { useRouter } from 'next/navigation';
 
 export default function SearchBtn() {
+  const router = useRouter();
+  const [inputValue, setInputValue] = useState('');
+
   return (
     <Drawer>
       <DrawerTrigger>
@@ -27,10 +33,17 @@ export default function SearchBtn() {
             <DrawerTitle className="mb-3 font-heading font-medium">
               What would you like to find today?
             </DrawerTitle>
-            <Input placeholder="Search" />
+            <Input
+              placeholder="Search"
+              onChange={(e) => setInputValue(e.target.value)}
+            />
           </DrawerHeader>
           <DrawerFooter>
-            <Button>Search</Button>
+            <DrawerClose asChild>
+              <Button onClick={() => router.push(`/?search=${inputValue}`)}>
+                Search
+              </Button>
+            </DrawerClose>
             <DrawerClose asChild>
               <Button variant="outline">Cancel</Button>
             </DrawerClose>
