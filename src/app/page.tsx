@@ -1,5 +1,4 @@
 import ProductCard from '@/components/custom/collection/ProductCard';
-import CollectionCard from '@/components/custom/homepage/CollectionCard';
 import CollectionsGrid from '@/components/custom/homepage/CollectionsGrid';
 import { buttonVariants } from '@/components/ui/button';
 import { getCollection } from '@/shopify/queries/getCollection';

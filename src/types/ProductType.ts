@@ -1,4 +1,11 @@
-import { Product } from '@shopify/hydrogen-react/storefront-api-types';
+import {
+  Maybe,
+  Metafield,
+  MetafieldReferenceConnection,
+  MetafieldReference,
+  Product,
+  Metaobject,
+} from '@shopify/hydrogen-react/storefront-api-types';
 
 export interface ProductType extends Product {
   brand: {
