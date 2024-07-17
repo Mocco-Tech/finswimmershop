@@ -18,11 +18,11 @@ export default function CollectionCard({
   return (
     <div
       className={cn(
-        'h-[400px] rounded-xl overflow-hidden relative p-6 flex items-end',
+        'h-64 lg:h-[400px] rounded-xl overflow-hidden relative p-6 flex items-end',
         className
       )}
     >
-      <div className="h-[400px] w-full absolute top-0 left-0 bg-black/30 z-10"></div>
+      <div className="h-64 lg:h-[400px] w-full absolute top-0 left-0 bg-black/30 z-10"></div>
       <Image
         src={imageSrc}
         alt={title}

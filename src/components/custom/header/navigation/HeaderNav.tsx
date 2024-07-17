@@ -9,7 +9,7 @@ import {
 } from '@/components/ui/tooltip';
 import NavItemHasChild from './NavItemHasChild';
 import NavItem from './NavItem';
-import { cutMenuLink } from '@/lib/helpers';
+import { cutMenuLink, cutPagesMenuLink } from '@/lib/helpers';
 import { MenuType } from '@/types/MenuType';
 
 export default function HeaderNav({
@@ -76,7 +76,7 @@ export default function HeaderNav({
                   return menuItem.items.length > 0 ? (
                     <li key={menuItem.id}>
                       <NavItemHasChild
-                        link={cutMenuLink(menuItem.url)}
+                        link={cutPagesMenuLink(menuItem.url)}
                         items={menuItem.items}
                       >
                         {menuItem.title}
@@ -84,7 +84,7 @@ export default function HeaderNav({
                     </li>
                   ) : (
                     <li key={menuItem.id}>
-                      <NavItem link={cutMenuLink(menuItem.url)}>
+                      <NavItem link={cutPagesMenuLink(menuItem.url)}>
                         {menuItem.title}
                       </NavItem>
                     </li>

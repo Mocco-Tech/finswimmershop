@@ -30,7 +30,7 @@ export default function Sidebar({
   const brands = getBrands(productsAll!);
 
   return (
-    <aside className="w-full md:w-1/5 h-fit rounded-xl p-2 md:p-6">
+    <aside className="bg-slate-50 w-full md:w-1/5 h-fit rounded-xl p-4 md:p-6">
       <h3 className="text-slate-700 font-heading font-medium text-xl">
         Filters
       </h3>

@@ -10,7 +10,6 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from '@/components/ui/drawer';
-import HeaderBtn from './HeaderBtn';
 import { Search } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
@@ -23,9 +22,7 @@ export default function SearchBtn() {
   return (
     <Drawer>
       <DrawerTrigger>
-        <HeaderBtn>
-          <Search className="w-[18px] text-slate-700" strokeWidth={1.25} />
-        </HeaderBtn>
+        <Search className="w-[18px] text-slate-700" strokeWidth={1.25} />
       </DrawerTrigger>
       <DrawerContent>
         <div className="w-96 mx-auto">

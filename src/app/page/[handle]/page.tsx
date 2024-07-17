@@ -5,7 +5,7 @@ import { getPage } from '@/shopify/queries/getPage';
 import { getMenu } from '@/shopify/queries/getMenu';
 import PageContent from '@/components/custom/pages/PageContent';
 import Link from 'next/link';
-import { cutMenuLink, cutPagesMenuLink } from '@/lib/helpers';
+import { cutPagesMenuLink } from '@/lib/helpers';
 import { MenuType } from '@/types/MenuType';
 import { notFound } from 'next/navigation';
 
@@ -21,16 +21,16 @@ export default async function PagesPage({ params }: { params: Params }) {
 
   return (
     <div className="px-4 py-6 lg:p-10">
-      <h2 className="text-center mb-6 lg:mb-16 text-2xl font-heading text-slate-800 uppercase tracking-wide">
+      <h2 className="md:text-center mb-6 lg:mb-16 text-xl md:text-2xl font-heading text-slate-800 uppercase tracking-wide">
         Information for customers
       </h2>
-      <div className="flex flex-wrap">
-        <aside className="h-96 border-r border-slate-100 w-full md:w-1/5 md:p-4 pt-0">
+      <div className="flex flex-col-reverse gap-5 md:flex-row md:gap-0 flex-wrap">
+        <aside className="md:border-r border-slate-100 w-full md:w-1/5 md:p-4 pt-0">
           <ul className="">
             {footerMenu.data.menu.items.map((menuItem: MenuType) => (
               <li key={menuItem.id}>
                 <Link
-                  href={cutMenuLink(menuItem.url)}
+                  href={`/page/${cutPagesMenuLink(menuItem.url)}`}
                   className={`block peer text-slate-600 px-4 py-3 duration-150 ${
                     cutPagesMenuLink(menuItem.url) === params.handle
                       ? 'bg-slate-100'

@@ -1,12 +1,14 @@
 import { ProductType } from '@/types/ProductType';
 
 export function cutMenuLink(menuItem: string) {
-  const url = menuItem.split(process.env.PUBLIC_STORE_DOMAIN!)[1];
+  const url = menuItem.split('https://finswimmershop.myshopify.com')[1];
   return url;
 }
 
 export function cutPagesMenuLink(menuItem: string) {
-  const url = menuItem.split(process.env.PUBLIC_STORE_DOMAIN! + '/pages/')[1];
+  const url = menuItem.split(
+    'https://finswimmershop.myshopify.com' + '/pages/'
+  )[1];
   return url;
 }
 

@@ -38,7 +38,9 @@ export default function CartItem({ line }: { line: CartLine }) {
               return (
                 option?.key !== 'Title' && (
                   <span key={option?.key}>
-                    {index ? ' / ' : ''}
+                    {index || line?.merchandise?.selectedOptions.length > 0
+                      ? ' / '
+                      : ''}
                     {option?.value}
                   </span>
                 )

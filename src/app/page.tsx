@@ -29,7 +29,7 @@ export default async function Home({
     const products = await getSearchProducts(searchParams.search);
 
     return (
-      <div className="p-2 md:px-10 md:py-8">
+      <div className="p-3 md:px-10 md:py-8">
         <h1 className="mb-10 text-slate-500 text-lg">
           Here are some results of your search:{' '}
           <span className="font-medium text-slate-700">
@@ -58,7 +58,7 @@ export default async function Home({
     <section className="p-4 md:p-5">
       <div className="flex items-center flex-col-reverse md:flex-row gap-5">
         <div className="w-full md:flex-1">
-          <div className="px-4 py-1 border border-slate-400 text-slate-600 rounded-lg w-fit mb-4">
+          <div className="px-4 py-1 border border-slate-400 text-slate-600 rounded-lg w-fit mb-1 lg:mb-4">
             {bannerCategory.reference.title}
           </div>
           <div className="overflow-hidden rounded-lg h-80 md:h-96 w-full mb-4">
@@ -74,19 +74,19 @@ export default async function Home({
               className="w-full h-full object-cover"
             />
           </div>
-          <h2 className="text-slate-700 text-3xl font-heading font-light mb-2">
+          <h2 className="text-slate-700 text-2xl lg:text-3xl font-heading font-light mb-1 lg:mb-2">
             {bannerTitle.value}
           </h2>
-          <p className="text-slate-400 mb-2">{bannerDesc.value}</p>
+          <p className="text-slate-400 mb-1 lg:mb-2">{bannerDesc.value}</p>
           <Link
             href={'/collections/' + bannerCategory.reference.handle}
             className={buttonVariants({
               className:
-                '!px-0 uppercase font-body !text-lg !font-normal !text-slate-600 tracking-tight',
+                '!px-0 uppercase font-body md:!text-lg !font-normal !text-slate-600 tracking-tight',
               variant: 'link',
             })}
           >
-            <ArrowRight strokeWidth={1} className="mr-1" />{' '}
+            <ArrowRight strokeWidth={1} className="mr-1 w-5" />{' '}
             {bannerBtnTitle.value}
           </Link>
         </div>

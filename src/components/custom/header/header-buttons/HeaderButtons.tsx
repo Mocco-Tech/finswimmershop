@@ -14,7 +14,7 @@ export default function HeaderButtons({
 }) {
   return (
     <div className="flex items-center gap-3">
-      <SearchBtn />
+      {/* <SearchBtn /> */}
       {/* <LanguageBtn
         className="hidden md:block"
         languages={languages}

@@ -12,7 +12,7 @@ export default function Banner({
 }) {
   return (
     <div
-      className="p-2 md:px-6 py-4 bg-fixed h-72 md:h-96 flex flex-col justify-between bg-center bg-cover bg-no-repeat absolute top-0 w-full"
+      className="p-2 md:px-6 py-4 md:bg-fixed h-72 md:h-96 flex flex-col justify-between bg-center bg-cover bg-no-repeat absolute top-0 w-full"
       style={{
         backgroundImage: `url(${image ? image : '/empty-category.jpg'})`,
       }}

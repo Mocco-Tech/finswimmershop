@@ -3,12 +3,12 @@ import CollectionCard from './CollectionCard';
 
 export default function CollectionsGrid({ collections }: { collections: any }) {
   return (
-    <div className="grid grid-cols-3 w-full gap-5 my-10">
+    <div className="grid grid-cols-1 lg:grid-cols-3 w-full gap-5 mt-10 mb-0">
       <CollectionCard
         title={collections.data.freedivingFins.title}
         handle={collections.data.freedivingFins.handle}
         imageSrc={collections.data.freedivingFins.image.src}
-        className="col-span-3"
+        className="lg:col-span-3"
       />
       <CollectionCard
         title={collections.data.uwRugbyFins.title}
@@ -29,7 +29,7 @@ export default function CollectionsGrid({ collections }: { collections: any }) {
         title={collections.data.monofins.title}
         handle={collections.data.monofins.handle}
         imageSrc={collections.data.monofins.image.src}
-        className="col-span-3"
+        className="lg:col-span-3"
       />
     </div>
   );

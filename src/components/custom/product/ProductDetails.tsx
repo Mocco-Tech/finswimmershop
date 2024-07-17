@@ -1,35 +1,30 @@
 'use client';
 import React, { useState } from 'react';
-import { AddToCartButton, Money } from '@shopify/hydrogen-react';
 import { toast } from 'sonner';
-import { buttonVariants } from '@/components/ui/button';
-import AccordionSection from './product-details/AccordionSection';
-import { ProductType } from '@/types/ProductType';
-import {
-  MetafieldReference,
-  Metaobject,
-} from '@shopify/hydrogen-react/storefront-api-types';
+import { AddToCartButton, Money } from '@shopify/hydrogen-react';
 
-type SelectedVariantType = {
-  id: string;
-  title: string;
-  price: { amount: string; currencyCode: string };
-  selectedOptions: { name: string; value: string }[];
-};
+import { buttonVariants } from '@/components/ui/button';
+import ProductOptions from './ProductOptions';
+import AccordionSection from './product-details/AccordionSection';
+
+import { ProductType } from '@/types/ProductType';
+import { SelectedVariantType } from '@/types/SelectedVariantType';
 
 type SelectedAttributes = { key: string; value: string };
+
+interface Props {
+  product: ProductType;
+  selectedVariant: SelectedVariantType;
+  setSelectedOption: (name: string, value: string) => void;
+  options?: any;
+}
 
 export default function ProductDetails({
   product,
   selectedVariant,
   setSelectedOption,
   options,
-}: {
-  product: ProductType;
-  selectedVariant: SelectedVariantType;
-  setSelectedOption: (name: string, value: string) => void;
-  options?: any;
-}) {
+}: Props) {
   const price = product?.variants?.edges?.[0]?.node?.price;
 
   const [selecteAttributes, setSelecteAttributes] = useState<
@@ -78,72 +73,30 @@ export default function ProductDetails({
             {product?.metafields.map(
               (select) =>
                 select && (
-                  <div
+                  <ProductOptions
                     key={select?.key}
-                    className="w-full flex flex-col justify-between items-start gap-1"
-                  >
-                    <label className="text-slate-600/80 text-xs capitalize">
-                      {/* @ts-ignore */}
-                      Select {select?.references?.edges[0].node.type}
-                    </label>
-                    <select
-                      onChange={(e) => handleSelect(select.key, e.target.value)}
-                      className="flex-1 w-full appearance-none border border-slate-200 rounded px-3 py-1 text-slate-600 font-light outline-none focus:ring-2 focus:ring-slate-700  duration-150"
-                      defaultValue="DEFAULT"
-                    >
-                      <option value="DEFAULT" disabled>
-                        Select option
-                      </option>
-                      {select?.references?.edges.map((option) => (
-                        <option
-                          // @ts-ignore
-                          key={option.node.handle}
-                          // @ts-ignore
-                          value={option.node.fields[0].value}
-                        >
-                          {/* @ts-ignore */}
-                          {option.node.fields[0].value}
-                        </option>
-                      ))}
-                    </select>
-                  </div>
+                    // @ts-ignore
+                    values={select?.references?.edges!}
+                    type="metafields"
+                    handleSelect={handleSelect}
+                    selectedKey={select?.key}
+                  />
                 )
             )}
 
-            {/*  */}
             {options.length > 0 &&
               product?.variants?.edges?.length > 1 &&
               options?.map(
                 ({ name, values }: { name: string; values: string[] }) => (
-                  <div
+                  <ProductOptions
                     key={name}
-                    className="w-full flex flex-col justify-between items-start gap-1"
-                  >
-                    <label className="text-slate-600/80 text-xs">
-                      Select {name}
-                    </label>
-                    <select
-                      name={name}
-                      id={name}
-                      className="flex-1 w-full appearance-none border border-slate-200 rounded px-3 py-1 text-slate-600 font-light outline-none focus:ring-2 focus:ring-slate-700  duration-150"
-                      onChange={(e) => setSelectedOption(name, e.target.value)}
-                      defaultValue={'DEFAULT'}
-                    >
-                      <option value="DEFAULT" disabled>
-                        Select option
-                      </option>
-                      {values.map((value: string) => {
-                        return (
-                          <option key={value} value={value}>
-                            {value}
-                          </option>
-                        );
-                      })}
-                    </select>
-                  </div>
+                    name={name}
+                    values={values}
+                    type="options"
+                    setSelectedOption={setSelectedOption}
+                  />
                 )
               )}
-            {/*  */}
           </div>
         )}
       </div>
@@ -163,7 +116,6 @@ export default function ProductDetails({
           onClick={() => {
             toast.success(`${product?.title} added to the cart`);
           }}
-          disabled={selecteAttributes.length !== product?.metafields.length}
         >
           Add to cart
         </AddToCartButton>

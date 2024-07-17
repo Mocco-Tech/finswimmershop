@@ -7,7 +7,7 @@ import Banner from './banner-section/Banner';
 import ProductCard from '@/components/custom/collection/ProductCard';
 import Sidebar from './Sidebar';
 import Sorting from './collection-heading/Sorting';
-import { Button, buttonVariants } from '@/components/ui/button';
+import { buttonVariants } from '@/components/ui/button';
 import Link from 'next/link';
 
 export default function CollectionContent({
@@ -30,7 +30,7 @@ export default function CollectionContent({
         title={collection.data.collectionByHandle.title}
       />
 
-      <div className="bg-white rounded-t-3xl px-2 py-6 md:p-6 md:px-8 relative z-10">
+      <div className="bg-white rounded-t-3xl px-3 py-6 md:p-6 md:px-8 relative z-10">
         {products.length > 0 ? (
           <div className="w-full flex justify-between items-center mb-4 px-2 md:mb-8 font-heading text-slate-700">
             <p>
@@ -71,7 +71,7 @@ export default function CollectionContent({
             </main>
           </div>
         ) : (
-          <div className="py-10 flex items-center justify-center flex-col text-slate-500">
+          <div className="py-10 flex items-start md:items-center justify-center flex-col text-slate-500">
             <p className="mb-1">
               We&apos;re sorry, but this category is still empty.
             </p>

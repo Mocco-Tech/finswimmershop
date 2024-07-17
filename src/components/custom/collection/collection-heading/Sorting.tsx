@@ -45,7 +45,7 @@ export default function Sorting({
       id="sorting"
       value={selected}
       onChange={(e) => sortProducts(e.target.value)}
-      className="outline-none px-2 py-1 border border-white focus:border-slate-600 focus:ring-2 focus:ring-slate-600 focus:ring-offset-2 rounded-lg duration-150"
+      className="outline-none px-2 py-1 border bg-white border-white focus:border-slate-600 focus:ring-2 focus:ring-slate-600 focus:ring-offset-2 rounded-lg duration-150"
     >
       <option value="default">Default</option>
       <option value="price_low_to_high">Price: Low to high</option>

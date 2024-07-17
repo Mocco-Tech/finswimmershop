@@ -2,7 +2,7 @@ import Link from 'next/link';
 import React from 'react';
 import Logo from '../Logo';
 import { MenuType } from '@/types/MenuType';
-import { cutMenuLink } from '@/lib/helpers';
+import { cutMenuLink, cutPagesMenuLink } from '@/lib/helpers';
 
 export default function FooterTop({ footerMenu }: { footerMenu: MenuType }) {
   return (
@@ -17,7 +17,7 @@ export default function FooterTop({ footerMenu }: { footerMenu: MenuType }) {
           {footerMenu.items.map((menuItem) => (
             <li key={menuItem.id}>
               <Link
-                href={cutMenuLink(menuItem.url)}
+                href={`/page/${cutPagesMenuLink(menuItem.url)}`}
                 className="underline text-slate-700 font-light"
               >
                 {menuItem.title}

@@ -2,12 +2,7 @@
 
 import React from 'react';
 
-import {
-  Sheet,
-  SheetContent,
-  SheetTitle,
-  SheetTrigger,
-} from '@/components/ui/sheet';
+import { SheetContent, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 import {
   CartLineProvider,
   CartWithActions,
@@ -23,11 +18,11 @@ export default function CartHeaderItem() {
   const cart: CartWithActions = useCart();
 
   return (
-    <Sheet>
+    <>
       <SheetTrigger>
         <CartBtn cartQty={cart.totalQuantity!} />
       </SheetTrigger>
-      <SheetContent className="!max-w-[30rem] w-[90%] md:w-full pt-5 h-svh flex flex-col justify-between gap-0 px-0 pb-3">
+      <SheetContent className="!max-w-[30rem] w-[90%] md:w-full pt-5 h-lvh flex flex-col justify-between gap-0 px-0 pb-3">
         {cart?.lines?.length! > 0 ? (
           <>
             <div className="overflow-y-scroll no-scrollbar px-4 pb-2">
@@ -54,6 +49,6 @@ export default function CartHeaderItem() {
           </>
         )}
       </SheetContent>
-    </Sheet>
+    </>
   );
 }

@@ -30,7 +30,7 @@ export default function ProductContent() {
           setSelectedOption={setSelectedOption}
         />
       </div>
-      <div className="mt-10 px-2">
+      <div className="mt-10 px-3">
         <h3 className="uppercase font-heading text-2xl tracking-wide text-slate-700 mb-4">
           You may also like
         </h3>

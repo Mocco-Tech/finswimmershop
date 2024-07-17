@@ -9,6 +9,8 @@ import NextTopLoader from 'nextjs-toploader';
 import Footer from '@/components/custom/footer/Footer';
 import { getMenu } from '@/shopify/queries/getMenu';
 import { getLocalizations } from '@/shopify/queries/getLocalizations';
+import MobileNav from '@/components/custom/mobile/MobileNav';
+import { Sheet } from '@/components/ui/sheet';
 
 const heading = Jost({
   subsets: ['latin'],
@@ -42,21 +44,24 @@ export default async function RootLayout({
       <body className={`${heading.variable} ${body.variable} font-body`}>
         <ShopifyDataProvider>
           <CartDataProvider>
-            <NextTopLoader color="#0ea5e9" showSpinner={false} />
-            <Header
-              collections={collections.data.menu}
-              menu={menu.data.menu}
-              languages={localizations.data.localization.availableLanguages}
-              currentLanguage={localizations.data.localization.language}
-            />
-            {children}
-            <Toaster
-              position="top-center"
-              richColors={true}
-              offset={10}
-              duration={3000}
-            />
-            <Footer footerMenu={footerMenu.data.menu} />
+            <Sheet>
+              <NextTopLoader color="#0ea5e9" showSpinner={false} />
+              <Header
+                collections={collections.data.menu}
+                menu={menu.data.menu}
+                languages={localizations.data.localization.availableLanguages}
+                currentLanguage={localizations.data.localization.language}
+              />
+              {children}
+              <Toaster
+                position="top-center"
+                richColors={true}
+                offset={10}
+                duration={3000}
+              />
+              <MobileNav collections={collections.data.menu} />
+              <Footer footerMenu={footerMenu.data.menu} />
+            </Sheet>
           </CartDataProvider>
         </ShopifyDataProvider>
       </body>

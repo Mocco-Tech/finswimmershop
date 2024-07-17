@@ -33,9 +33,11 @@ export default function ProductCard({
         imageSecond ? setCurrentImage(imageFirst) : imageFirst
       }
     >
-      <span className="bg-slate-50 absolute top-1 left-1 lg:top-2 lg:left-2 block w-fit px-4 py-1 border border-slate-600 rounded-lg text-sm font-heading text-slate-600/90">
-        New
-      </span>
+      {isNew && (
+        <span className="bg-slate-50 absolute top-1 left-1 lg:top-2 lg:left-2 block w-fit px-4 py-1 border border-slate-600 rounded-lg text-sm font-heading text-slate-600/90">
+          New
+        </span>
+      )}
       <Image
         src={currentImage ? currentImage : '/no-image.webp'}
         alt={`${title} image`}

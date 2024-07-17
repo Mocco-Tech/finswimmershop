@@ -5,7 +5,7 @@ export default function FooterBottom() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <div className="bg-slate-100 py-3 px-6 rounded-lg text-sm text-slate-400 flex flex-wrap flex-col sm:flex-row items-center justify-between gap-2">
+    <div className="mb-14 md:mb-0 bg-slate-100 py-3 px-6 rounded-b-lg text-sm text-slate-400 flex flex-wrap flex-col sm:flex-row items-center justify-between gap-2">
       <p>© {currentYear} | All rights reserved </p>
       <p className="flex items-center gap-2">
         <Code2 className="w-4" />

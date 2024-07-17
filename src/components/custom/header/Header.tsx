@@ -18,7 +18,7 @@ export default function Header({
   currentLanguage: LanguageType;
 }) {
   return (
-    <header className="h-16 px-2 lg:px-8 border-b flex items-center gap-6 w-full sticky top-0 z-20 bg-white">
+    <header className="h-16 px-4 lg:px-8 border-b flex items-center gap-6 w-full sticky top-0 z-20 bg-white">
       <HeaderNav collections={collections} menu={menu} />
 
       <div className="lg:flex-1 flex justify-between gap-3 items-center w-full">
