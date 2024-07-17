@@ -1,9 +1,18 @@
 import { getData } from '../getData';
 
-export async function getProducts(cursor?: string) {
-  const Products = `#graphql
-    query Products {
-        products(first: 250) {
+export async function getMoreCollection(handle: string, cursor: string) {
+  const Collection = `#graphql
+    query Collection {
+    collectionByHandle(handle: "${handle}") {
+      handle
+      title
+      description
+      image {
+        src
+        url
+        altText
+      }
+      products(after: "${cursor}", first: 20) {
         edges {
           cursor
           node {
@@ -46,8 +55,8 @@ export async function getProducts(cursor?: string) {
             }
           }
         }
-    }
-    productsAll: products(first: 250) {
+      }
+      productsAll: products(first: 250) {
         edges {
           cursor
           node {
@@ -76,7 +85,12 @@ export async function getProducts(cursor?: string) {
             }
           }
         }
+        seo {
+          title
+          description
+        }
+      }
   }`;
-  const { props } = await getData(Products);
+  const { props } = await getData(Collection);
   return props;
 }

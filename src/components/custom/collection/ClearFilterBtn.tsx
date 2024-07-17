@@ -15,15 +15,19 @@ export default function ClearFilterBtn({
 }) {
   const router = useRouter();
   const searchParams = useSearchParams();
+  const brand = searchParams.get('brand');
+  console.log(brand);
 
-  if (searchParams.size > 0)
+  if (searchParams.size > 0 && brand)
     return (
       <button
         onClick={() => {
           setSelected('default');
-          collectionHandle !== undefined
-            ? router.push(`/collections/${collectionHandle}`, { scroll: false })
-            : router.push('/shop', { scroll: false });
+          brand !== null
+            ? router.push('/shop', { scroll: false })
+            : router.push(`/collections/${collectionHandle}`, {
+                scroll: false,
+              });
         }}
         className={cn(
           'underline text-slate-400 hover:text-slate-700 duration-150',

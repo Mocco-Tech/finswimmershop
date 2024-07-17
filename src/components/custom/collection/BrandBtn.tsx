@@ -13,7 +13,6 @@ interface Props {
 export default function BrandBtn({
   brand,
   collectionHandle,
-  sortBy,
   setSelected,
 }: Props) {
   const router = useRouter();

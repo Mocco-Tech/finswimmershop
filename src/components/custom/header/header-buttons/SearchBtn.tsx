@@ -21,7 +21,7 @@ export default function SearchBtn() {
 
   return (
     <Drawer>
-      <DrawerTrigger>
+      <DrawerTrigger aria-label="Search button">
         <Search className="w-[18px] text-slate-700" strokeWidth={1.25} />
       </DrawerTrigger>
       <DrawerContent>

@@ -21,22 +21,28 @@ export default function Sorting({
   const router = useRouter();
   const searchParams = useSearchParams();
   const brand = searchParams.get('brand');
+  const page = searchParams.get('page');
 
   function sortProducts(key: string) {
     setSelected(key);
 
     collectionHandle
       ? router.push(
-          `/collections/${collectionHandle}?${
+          `/collections/${collectionHandle}?${page ? `page=${page}&` : ''}${
             brand ? `brand=${brand}&` : ''
           }sortBy=${key}`,
           {
             scroll: false,
           }
         )
-      : router.push(`?${brand ? `brand=${brand}&` : ''}sortBy=${key}`, {
-          scroll: false,
-        });
+      : router.push(
+          `?${page ? `page=${page}&` : ''}${
+            brand ? `brand=${brand}&` : ''
+          }sortBy=${key}`,
+          {
+            scroll: false,
+          }
+        );
   }
 
   return (

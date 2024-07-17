@@ -12,7 +12,7 @@ export async function getCollection(handle: string) {
         url
         altText
       }
-      products(first: 20) {
+      products(first: 250) {
         edges {
           cursor
           node {

@@ -72,6 +72,7 @@ export default async function Home({
               width={500}
               height={500}
               className="w-full h-full object-cover"
+              priority
             />
           </div>
           <h2 className="text-slate-700 text-2xl lg:text-3xl font-heading font-light mb-1 lg:mb-2">
@@ -92,25 +93,30 @@ export default async function Home({
         </div>
 
         <div className="h-96 md:h-[650px] w-full md:w-1/2 relative rounded-xl overflow-hidden flex items-center px-4 md:px-8">
-          <div className="z-10 bg-black/30 w-full h-96 md:h-[650px] absolute top-0 left-0"></div>
+          <div className="z-10 bg-black/40 w-full h-96 md:h-[650px] absolute top-0 left-0"></div>
           <Image
             src="/empty-category.jpg"
             alt="Home page banner image"
             width={1000}
             height={1000}
+            priority
             className="absolute w-full h-full object-cover top-0 left-0 z-0"
           />
 
           <div className="z-10 text-slate-50 flex flex-col gap-3 items-start">
             <h2 className="font-heading text-xl lg:text-4xl font-medium">
-              Join Finswimmershop club
+              Welcome to Finswimmershop
             </h2>
-            <p className="text-slate-200">
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Saepe,
-              iusto a obcaecati excepturi sint nobis temporibus culpa eius aut!
-              Aut facilis nulla vero magnam. Eum excepturi fuga eos eius rerum?
+            <p className="text-slate-100">
+              Your premier destination for high-quality underwater sports
+              equipment. At Finswimmershop.com, we specialize in selling a wide
+              range of fins, masks, snorkels, wetsuits and other accessories
+              from the world&apos;s leading manufacturers. Our mission is to
+              make professional equipment accessible and easy to buy, ensuring
+              that you have everything you need to succeed in your underwater
+              adventures.
             </p>
-            <Link
+            {/* <Link
               href="/"
               className={buttonVariants({
                 variant: 'link',
@@ -128,7 +134,7 @@ export default async function Home({
               })}
             >
               Sign in
-            </Link>
+            </Link> */}
           </div>
         </div>
       </div>

@@ -40,7 +40,10 @@ export default function MobileCategoriesMenu({
 
   return (
     <Sheet>
-      <SheetTrigger className="w-1/4 h-full flex items-center justify-center border-r border-slate-200">
+      <SheetTrigger
+        aria-label="Menu button"
+        className="w-1/4 h-full flex items-center justify-center border-r border-slate-200"
+      >
         <Menu strokeWidth={1.1} className="text-slate-700" />
       </SheetTrigger>
       <SheetContent

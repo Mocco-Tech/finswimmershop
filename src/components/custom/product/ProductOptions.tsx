@@ -25,15 +25,11 @@ export default function ProductOptions({
           <select
             name={name}
             id={name}
-            className="flex-1 bg-white w-full appearance-none border border-slate-200 rounded px-3 py-1 text-slate-600 font-light outline-none focus:ring-2 focus:ring-slate-700  duration-150"
+            className="flex-1 bg-white w-full appearance-none border border-slate-200 rounded px-3 py-1 text-slate-700 font-normal outline-none focus:ring-2 focus:ring-slate-700  duration-150"
             onChange={(e) =>
               setSelectedOption && setSelectedOption(name!, e.target.value)
             }
-            defaultValue={'DEFAULT'}
           >
-            <option value="DEFAULT" disabled>
-              Select option
-            </option>
             {values.map((value: string) => {
               return (
                 <option key={value} value={value}>
@@ -55,12 +51,8 @@ export default function ProductOptions({
             onChange={(e) =>
               handleSelect && handleSelect(selectedKey!, e.target.value)
             }
-            className="flex-1 w-full appearance-none border bg-white border-slate-200 rounded px-3 py-1 text-slate-600 font-light outline-none focus:ring-2 focus:ring-slate-700  duration-150"
-            defaultValue="DEFAULT"
+            className="flex-1 w-full appearance-none border bg-white border-slate-200 rounded px-3 py-1 text-slate-700 font-normal outline-none focus:ring-2 focus:ring-slate-700  duration-150"
           >
-            <option value="DEFAULT" disabled>
-              Select option
-            </option>
             {values.map((option) => (
               <option
                 // @ts-ignore

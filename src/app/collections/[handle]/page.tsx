@@ -5,6 +5,7 @@ import { getCollection } from '@/shopify/queries/getCollection';
 import { CollectionType } from '@/types/CollectionType';
 import CollectionContent from '@/components/custom/collection/CollectionContent';
 import { getSortedProducts } from '@/lib/helpers';
+import { PER_PAGE } from '@/lib/consts';
 
 export const revalidate = 3600;
 
@@ -13,27 +14,31 @@ export default async function ProductCategoryPage({
   searchParams,
 }: {
   params: Params;
-  searchParams: { brand: string; sortBy: string };
+  searchParams: { brand: string; sortBy: string; page: string };
 }) {
   const collection: CollectionType = await getCollection(params.handle);
 
-  getSortedProducts(
-    collection.data.collectionByHandle.products.edges,
-    searchParams.sortBy
-  );
+  const page = searchParams.page ?? '1';
+  const start = (Number(page) - 1) * PER_PAGE;
+  const end = start + PER_PAGE;
+
+  const productsAll = collection.data.collectionByHandle.products.edges;
+  let products = productsAll.slice(start, end);
+
+  getSortedProducts(products, searchParams.sortBy);
 
   if (searchParams.brand) {
-    const filteredProducts =
-      collection.data.collectionByHandle.products.edges.filter(
-        (product) =>
-          product.node?.brand?.references?.edges?.[0]?.node.handle ===
-          searchParams.brand
-      );
+    const filteredProducts = products.filter(
+      (product) =>
+        product.node?.brand?.references?.edges?.[0]?.node.handle ===
+        searchParams.brand
+    );
     return (
       <CollectionContent
         collection={collection}
         products={filteredProducts}
         productsAll={collection.data.collectionByHandle.productsAll.edges}
+        end={end}
       />
     );
   }
@@ -41,8 +46,9 @@ export default async function ProductCategoryPage({
   return (
     <CollectionContent
       collection={collection}
-      products={collection.data.collectionByHandle.products.edges}
+      products={products}
       productsAll={collection.data.collectionByHandle.productsAll.edges}
+      end={end}
     />
   );
 }
@@ -57,10 +63,10 @@ export async function generateMetadata({
 
   const seoTitle = collectionSeo?.seo.title
     ? collectionSeo?.seo.title
-    : collectionSeo.title;
+    : collectionSeo?.title;
   const seoDescription = collectionSeo?.seo.description
     ? collectionSeo?.seo.description
-    : collectionSeo.description;
+    : collectionSeo?.description;
   const image = collectionSeo?.image?.src
     ? collectionSeo?.image?.src
     : '/empty-category.jpg';

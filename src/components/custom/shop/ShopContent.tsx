@@ -7,13 +7,17 @@ import Sorting from '../collection/collection-heading/Sorting';
 import Sidebar from '../collection/Sidebar';
 import { isItemNew } from '@/lib/helpers';
 import Banner from '../collection/banner-section/Banner';
+import Pagination from '../collection/Pagination';
+import { PER_PAGE } from '@/lib/consts';
 
 export default function ShopContent({
   products,
   productsAll,
+  end,
 }: {
   products: { node: ProductType }[];
   productsAll: { node: ProductType }[];
+  end: number;
 }) {
   const isNew = isItemNew(products[0]?.node.publishedAt);
   const [selected, setSelected] = useState('default');
@@ -39,7 +43,7 @@ export default function ShopContent({
           <Sidebar productsAll={productsAll} setSelected={setSelected} />
 
           <main className="flex-1">
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-2 md:gap-3">
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-2 md:gap-3 mb-12">
               {products.map((product) => (
                 <ProductCard
                   key={product.node?.id}
@@ -52,6 +56,7 @@ export default function ShopContent({
                 />
               ))}
             </div>
+            <Pagination lastPage={Math.ceil(productsAll.length / PER_PAGE)} />
           </main>
         </div>
       </div>

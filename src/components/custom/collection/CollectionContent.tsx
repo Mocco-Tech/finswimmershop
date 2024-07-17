@@ -9,15 +9,19 @@ import Sidebar from './Sidebar';
 import Sorting from './collection-heading/Sorting';
 import { buttonVariants } from '@/components/ui/button';
 import Link from 'next/link';
+import Pagination from './Pagination';
+import { PER_PAGE } from '@/lib/consts';
 
 export default function CollectionContent({
   collection,
   products,
   productsAll,
+  end,
 }: {
   collection: CollectionType;
-  products: { node: ProductType }[];
+  products: { node: ProductType; cursor?: string }[];
   productsAll: { node: ProductType; cursor?: string | undefined }[];
+  end: number;
 }) {
   const isNew = isItemNew(products[0]?.node.publishedAt);
   const [selected, setSelected] = useState('default');
@@ -33,9 +37,7 @@ export default function CollectionContent({
       <div className="bg-white rounded-t-3xl px-3 py-6 md:p-6 md:px-8 relative z-10">
         {products.length > 0 ? (
           <div className="w-full flex justify-between items-center mb-4 px-2 md:mb-8 font-heading text-slate-700">
-            <p>
-              Showing {products.length} from {products.length}
-            </p>
+            <p>All products: {productsAll.length}</p>
 
             <Sorting
               products={products}
@@ -55,7 +57,7 @@ export default function CollectionContent({
             />
 
             <main className="flex-1">
-              <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-3">
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-3 mb-12">
                 {products.map((product) => (
                   <ProductCard
                     key={product.node?.id}
@@ -68,6 +70,11 @@ export default function CollectionContent({
                   />
                 ))}
               </div>
+
+              <Pagination
+                handle={collection.data.collectionByHandle.handle}
+                lastPage={Math.ceil(productsAll.length / PER_PAGE)}
+              />
             </main>
           </div>
         ) : (
