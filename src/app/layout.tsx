@@ -11,6 +11,8 @@ import { getMenu } from '@/shopify/queries/getMenu';
 import { getLocalizations } from '@/shopify/queries/getLocalizations';
 import MobileNav from '@/components/custom/mobile/MobileNav';
 import { Sheet } from '@/components/ui/sheet';
+import { SpeedInsights } from '@vercel/speed-insights/next';
+import { Analytics } from '@vercel/analytics/react';
 
 const heading = Jost({
   subsets: ['latin'],
@@ -42,6 +44,8 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body className={`${heading.variable} ${body.variable} font-body`}>
+        <SpeedInsights />
+        <Analytics />
         <ShopifyDataProvider>
           <CartDataProvider>
             <Sheet>
