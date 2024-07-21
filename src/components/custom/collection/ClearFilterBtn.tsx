@@ -1,7 +1,12 @@
 'use client';
 
 import React from 'react';
-import { useRouter, useSearchParams } from 'next/navigation';
+import {
+  useParams,
+  usePathname,
+  useRouter,
+  useSearchParams,
+} from 'next/navigation';
 import { cn } from '@/lib/utils';
 
 export default function ClearFilterBtn({
@@ -15,15 +20,15 @@ export default function ClearFilterBtn({
 }) {
   const router = useRouter();
   const searchParams = useSearchParams();
+  const pathname = usePathname();
   const brand = searchParams.get('brand');
-  console.log(brand);
 
   if (searchParams.size > 0 && brand)
     return (
       <button
         onClick={() => {
           setSelected('default');
-          brand !== null
+          pathname === '/shop'
             ? router.push('/shop', { scroll: false })
             : router.push(`/collections/${collectionHandle}`, {
                 scroll: false,

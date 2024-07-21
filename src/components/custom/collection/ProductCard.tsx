@@ -4,6 +4,17 @@ import React, { useState } from 'react';
 import { Money } from '@shopify/hydrogen-react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { CurrencyCode } from '@shopify/hydrogen-react/storefront-api-types';
+
+interface Props {
+  link: string;
+  imageFirst: string;
+  imageSecond?: string;
+  title: string;
+  price: { amount: string; currencyCode: CurrencyCode };
+  oldPrice?: { amount: string; currencyCode: CurrencyCode };
+  isNew?: boolean;
+}
 
 export default function ProductCard({
   link,
@@ -11,15 +22,9 @@ export default function ProductCard({
   imageSecond,
   title,
   price,
+  oldPrice,
   isNew,
-}: {
-  link: string;
-  imageFirst: string;
-  imageSecond?: string;
-  title: string;
-  price: { amount: string; currencyCode: string };
-  isNew?: boolean;
-}) {
+}: Props) {
   const [currentImage, setCurrentImage] = useState(imageFirst);
 
   return (
@@ -38,16 +43,23 @@ export default function ProductCard({
           New
         </span>
       )}
-      <Image
-        src={currentImage ? currentImage : '/no-image.webp'}
-        alt={`${title} image`}
-        width={500}
-        height={500}
-        className="w-full object-cover rounded-md mb-2"
-      />
+      <div className="overflow-hidden">
+        <Image
+          src={currentImage ? currentImage : '/no-image.webp'}
+          alt={`${title} image`}
+          width={500}
+          height={500}
+          className="w-full h-48 sm:h-64 md:h-72 lg:h-96 object-contain rounded-md mb-2"
+        />
+      </div>
       <h4 className="underline text-slate-600 mb-2">{title}</h4>
-      {/* @ts-ignore */}
-      <Money data={price} className="text-slate-600" />
+      <div>
+        {oldPrice && <Money data={oldPrice} className="line-through" />}
+        <Money
+          data={price}
+          className={oldPrice ? 'text-red-500' : 'text-slate-700'}
+        />
+      </div>
     </Link>
   );
 }

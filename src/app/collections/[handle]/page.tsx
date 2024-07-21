@@ -22,22 +22,31 @@ export default async function ProductCategoryPage({
   const start = (Number(page) - 1) * PER_PAGE;
   const end = start + PER_PAGE;
 
-  const productsAll = collection.data.collectionByHandle.products.edges;
-  let products = productsAll.slice(start, end);
+  const productsArr = collection.data.collectionByHandle.products.edges;
+  const products = productsArr.slice(start, end);
 
   getSortedProducts(products, searchParams.sortBy);
 
   if (searchParams.brand) {
-    const filteredProducts = products.filter(
-      (product) =>
-        product.node?.brand?.references?.edges?.[0]?.node.handle ===
-        searchParams.brand
-    );
+    const filteredProducts = productsArr
+      .filter(
+        (product) =>
+          product.node?.brand?.references?.edges?.[0]?.node.handle ===
+          searchParams.brand
+      )
+      .slice(start, end);
+    const filteredProductsAll =
+      collection.data.collectionByHandle.productsAll.edges.filter(
+        (product) =>
+          product.node?.brand?.references?.edges?.[0]?.node.handle ===
+          searchParams.brand
+      );
+
     return (
       <CollectionContent
         collection={collection}
         products={filteredProducts}
-        productsAll={collection.data.collectionByHandle.productsAll.edges}
+        productsAll={filteredProductsAll}
         end={end}
       />
     );
@@ -72,12 +81,12 @@ export async function generateMetadata({
     : '/empty-category.jpg';
 
   return {
-    title: `Finswimmer Shop | ${seoTitle}`,
+    title: `${seoTitle} | Finswimmer Shop`,
     description: seoDescription,
 
     metadataBase: new URL('https://www.finswimmershop.com'),
     openGraph: {
-      title: `Finswimmer Shop | ${seoTitle}`,
+      title: `${seoTitle} | Finswimmer Shop`,
       description: seoDescription,
       url: `https://www.finswimmershop.com/collections/${params?.handle}`,
       siteName: 'Finswimmer Shop',

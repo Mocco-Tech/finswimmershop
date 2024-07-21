@@ -52,7 +52,9 @@ export default function ProductOptions({
               handleSelect && handleSelect(selectedKey!, e.target.value)
             }
             className="flex-1 w-full appearance-none border bg-white border-slate-200 rounded px-3 py-1 text-slate-700 font-normal outline-none focus:ring-2 focus:ring-slate-700  duration-150"
+            defaultValue="DEFAULT"
           >
+            <option value="DEFAULT">Select option</option>
             {values.map((option) => (
               <option
                 // @ts-ignore

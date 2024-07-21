@@ -7,6 +7,7 @@ export async function getSingleProduct(handle: string) {
       handle
       id
       title
+      trackingParameters
       description
       descriptionHtml
       productType
@@ -35,12 +36,47 @@ export async function getSingleProduct(handle: string) {
               }
       }
       relatedProducts: metafield(namespace: "shopify--discovery--product_recommendation", key: "related_products") {
+        id
+        key
         value
+        references(first: 50) {
+                edges {
+                  node {
+                    ... on Product {
+                      id
+                      handle
+                      title
+                      availableForSale
+                      priceRange {
+                        minVariantPrice {
+                          amount
+                          currencyCode
+                        }
+                      }
+                      images(first: 10) {
+                        edges {
+                          node {
+                            id
+                            url
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
       }
       metafields(identifiers: [
-        {key: "blade_stiffness", namespace: "custom"},
         {key: "size", namespace: "custom"},
+        {key: "foot_width", namespace: "custom"},
+        {key: "blade_stiffness", namespace: "custom"},
+        {key: "blade_width", namespace: "custom"}
+        {key: "blade_length", namespace: "custom"}
+        {key: "blade_colour", namespace: "custom"}
         {key: "rails_color", namespace: "custom"}
+        {key: "preferred_wings_color", namespace: "custom"}
+        {key: "preferred_footpockets_color", namespace: "custom"}
+        {key: "distance", namespace: "custom"},
         ]) {
         id
         key
@@ -67,6 +103,11 @@ export async function getSingleProduct(handle: string) {
             id
             title
             price {
+              amount
+              currencyCode
+            }
+            currentlyNotInStock
+            compareAtPrice {
               amount
               currencyCode
             }

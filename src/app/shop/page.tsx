@@ -22,20 +22,28 @@ export default async function ShopPage({
   const start = (Number(page) - 1) * PER_PAGE;
   const end = start + PER_PAGE;
 
-  let products = productsArr.slice(start, end);
+  const products = productsArr.slice(start, end);
 
   getSortedProducts(products, searchParams.sortBy);
 
   if (searchParams.brand) {
-    const filteredProducts = products.filter(
+    const filteredProducts = productsArr
+      .filter(
+        (product) =>
+          product.node?.brand?.references?.edges?.[0]?.node.handle ===
+          searchParams.brand
+      )
+      .slice(start, end);
+    const filteredProductsAll = productsAll.filter(
       (product) =>
         product.node?.brand?.references?.edges?.[0]?.node.handle ===
         searchParams.brand
     );
+
     return (
       <ShopContent
         products={filteredProducts}
-        productsAll={productsAll}
+        productsAll={filteredProductsAll}
         end={end}
       />
     );

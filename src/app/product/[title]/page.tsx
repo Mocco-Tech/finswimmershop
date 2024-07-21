@@ -5,25 +5,18 @@ import { notFound } from 'next/navigation';
 import { getSingleProduct } from '@/shopify/queries/getSingleProduct';
 import ProductDataProvider from '@/components/custom/product/ProductDataProvider';
 import ProductContent from '@/components/custom/product/ProductContent';
-import { getRelatesProducts } from '@/shopify/queries/getRelatedProducts';
 
 export const revalidate = 3600;
 
 export default async function ProductPage({ params }: { params: Params }) {
   const product = await getSingleProduct(params.title);
-  const relatedProducts = await getRelatesProducts(
-    product?.data?.productByHandle?.id
-  );
 
   if (!product?.data?.productByHandle) {
     notFound();
   }
 
   return (
-    <ProductDataProvider
-      product={product.data.productByHandle}
-      relatedProducts={relatedProducts.data.productRecommendations}
-    >
+    <ProductDataProvider product={product.data.productByHandle}>
       <ProductContent />
     </ProductDataProvider>
   );
@@ -42,13 +35,13 @@ export async function generateMetadata({
   const productDescription = product?.seo?.description
     ? product?.seo?.description
     : product?.description;
-  const productImage = product.images.edges[0]
-    ? product.images.edges[0].node.url
+  const productImage = product?.images?.edges[0]
+    ? product?.images?.edges[0]?.node?.url
     : '/no-image.webp';
 
   return {
     title: productTitle,
-    description: `${productDescription.substr(0, 130)}`,
+    description: `${productDescription?.substr(0, 130)}`,
 
     metadataBase: new URL('https://www.finswimeershop.com'),
     openGraph: {

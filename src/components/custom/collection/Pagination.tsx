@@ -13,6 +13,7 @@ export default function Pagination({
 }) {
   const router = useRouter();
   const searchParams = useSearchParams();
+  const brand = searchParams.get('brand');
   const page = searchParams.get('page') ?? '1';
 
   const isFirstPage = Number(page) === 1;
@@ -20,23 +21,41 @@ export default function Pagination({
 
   const prevPageFn = () => {
     handle
-      ? router.push(`/collections/${handle}/?page=${Number(page) - 1}`)
-      : router.push(`/shop/?page=${Number(page) - 1}`);
+      ? router.push(
+          `/collections/${handle}/?${brand ? `brand=${brand}&` : ''}page=${
+            Number(page) - 1
+          }`
+        )
+      : router.push(
+          `/shop/?${brand ? `brand=${brand}&` : ''}page=${Number(page) - 1}`
+        );
   };
   const nextPageFn = () => {
     handle
-      ? router.push(`/collections/${handle}/?page=${Number(page) + 1}`)
-      : router.push(`/shop/?page=${Number(page) + 1}`);
+      ? router.push(
+          `/collections/${handle}/?${brand ? `brand=${brand}&` : ''}page=${
+            Number(page) + 1
+          }`
+        )
+      : router.push(
+          `/shop/?${brand ? `brand=${brand}&` : ''}page=${Number(page) + 1}`
+        );
   };
   const firstPageFn = () => {
     handle
-      ? router.push(`/collections/${handle}/?page=1`)
-      : router.push(`/shop/?page=1`);
+      ? router.push(
+          `/collections/${handle}/?${brand ? `brand=${brand}&` : ''}page=1`
+        )
+      : router.push(`/shop/?${brand ? `brand=${brand}&` : ''}page=1`);
   };
   const lastPageFn = () => {
     handle
-      ? router.push(`/collections/${handle}/?page=${lastPage}`)
-      : router.push(`/shop/?page=${lastPage}`);
+      ? router.push(
+          `/collections/${handle}/?${
+            brand ? `brand=${brand}&` : ''
+          }page=${lastPage}`
+        )
+      : router.push(`/shop/?${brand ? `brand=${brand}&` : ''}page=${lastPage}`);
   };
 
   return (

@@ -1,16 +1,17 @@
 'use client';
 
 import { useProduct } from '@shopify/hydrogen-react';
-import React, { useContext } from 'react';
+import React from 'react';
 
 import ImageGallery from './ImageGallery';
 import ProductDetails from './ProductDetails';
-import { RelatedProductsContext } from './ProductDataProvider';
 import ProductCard from '../collection/ProductCard';
+import { ExtendetProduct } from '@/types/RelatedProduct';
 
 export default function ProductContent() {
-  const { product, options, selectedVariant, setSelectedOption } = useProduct();
-  const relatedProducts = useContext(RelatedProductsContext);
+  const productData = useProduct();
+  const { options, selectedVariant, setSelectedOption } = productData;
+  const product = productData.product as ExtendetProduct;
 
   return (
     <div className="md:p-4">
@@ -30,26 +31,30 @@ export default function ProductContent() {
           setSelectedOption={setSelectedOption}
         />
       </div>
-      <div className="mt-10 px-3">
-        <h3 className="uppercase font-heading text-2xl tracking-wide text-slate-700 mb-4">
-          You may also like
-        </h3>
-        <div className="w-full flex gap-3 overflow-x-auto no-scrollbar">
-          {relatedProducts?.map((product) => {
-            return (
-              <div key={product.title} className="w-1/2 lg:w-1/4 flex-shrink-0">
+      {product?.relatedProducts?.references.edges.length > 0 && (
+        <div className="mt-10 px-3">
+          <h3 className="uppercase font-heading text-2xl tracking-wide text-slate-700 mb-4">
+            You may also like
+          </h3>
+          <div className="w-full flex gap-3 overflow-x-auto no-scrollbar">
+            {product?.relatedProducts?.references?.edges?.map((product) => (
+              <div
+                key={product.node.id}
+                className="w-1/2 lg:w-1/4 flex-shrink-0"
+              >
                 <ProductCard
-                  price={product.priceRange.minVariantPrice}
-                  title={product.title}
-                  link={`${product.handle}`}
-                  imageFirst={product.images.edges?.[0]?.node?.url}
-                  imageSecond={product.images.edges?.[1]?.node?.url}
+                  price={product.node.priceRange.minVariantPrice}
+                  title={product.node.title}
+                  link={`${product.node.handle}`}
+                  imageFirst={product.node.images.edges?.[0]?.node?.url}
+                  imageSecond={product.node.images.edges?.[1]?.node?.url}
+                  oldPrice={product.node.compareAtPrice}
                 />
               </div>
-            );
-          })}
+            ))}
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 }

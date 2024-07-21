@@ -55,9 +55,9 @@ export default function ProductDetails({
 
   return (
     <div
-      className={`bg-white rounded-xl p-4 lg:p-6 self-start w-full lg:w-1/2 flex flex-col justify-between ${
-        options.length > 1 ? 'lg:min-h-[680px]' : 'lg:min-h-fit'
-      }`}
+      className={`bg-white rounded-xl p-4 lg:p-6 self-start w-full flex flex-col justify-between ${
+        product.images.edges.length > 1 ? 'lg:w-1/2' : 'lg:w-3/5'
+      } ${options.length > 1 ? 'lg:min-h-[680px]' : 'lg:min-h-fit'}`}
     >
       <div className="mb-4">
         <h1 className="text-slate-700 font-heading text-2xl font-normal mb-2">
@@ -102,9 +102,22 @@ export default function ProductDetails({
       </div>
 
       <div>
-        <div className="border-t border-slate-100 py-4 text-slate-600 flex items-center gap-5">
-          {/* @ts-ignore */}
-          <Money data={selectedVariant ? selectedVariant?.price! : price!} />
+        <div className="border-t border-slate-100 py-4 text-slate-600 flex items-center gap-2">
+          {selectedVariant.compareAtPrice && (
+            <Money
+              data={selectedVariant.compareAtPrice}
+              className="line-through text-lg"
+            />
+          )}
+          <Money
+            // @ts-ignore
+            data={selectedVariant ? selectedVariant?.price! : price!}
+            className={
+              selectedVariant.compareAtPrice
+                ? 'text-red-500 text-lg'
+                : 'text-slate-700 text-lg'
+            }
+          />
         </div>
 
         <AddToCartButton
@@ -116,6 +129,10 @@ export default function ProductDetails({
           onClick={() => {
             toast.success(`${product?.title} added to the cart`);
           }}
+          disabled={
+            selecteAttributes.length !==
+            product?.metafields.filter((value) => value !== null).length
+          }
         >
           Add to cart
         </AddToCartButton>

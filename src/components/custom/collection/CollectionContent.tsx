@@ -7,7 +7,7 @@ import Banner from './banner-section/Banner';
 import ProductCard from '@/components/custom/collection/ProductCard';
 import Sidebar from './Sidebar';
 import Sorting from './collection-heading/Sorting';
-import { buttonVariants } from '@/components/ui/button';
+import { Button, buttonVariants } from '@/components/ui/button';
 import Link from 'next/link';
 import Pagination from './Pagination';
 import { PER_PAGE } from '@/lib/consts';
@@ -25,6 +25,7 @@ export default function CollectionContent({
 }) {
   const isNew = isItemNew(products[0]?.node.publishedAt);
   const [selected, setSelected] = useState('default');
+  const [isShownFilters, setIsShownFilters] = useState(false);
 
   return (
     <div className="z-0 relative pt-64 md:pt-[22rem]">
@@ -37,7 +38,17 @@ export default function CollectionContent({
       <div className="bg-white rounded-t-3xl px-3 py-6 md:p-6 md:px-8 relative z-10">
         {products.length > 0 ? (
           <div className="w-full flex justify-between items-center mb-4 px-2 md:mb-8 font-heading text-slate-700">
-            <p>All products: {productsAll.length}</p>
+            <div className="flex flex-row items-center gap-5">
+              <Button
+                onClick={() => setIsShownFilters((cur) => !cur)}
+                className="rounded-lg"
+              >
+                {isShownFilters ? 'Hide filters' : 'Show filters'}
+              </Button>
+              <p className="hidden md:inline">
+                All products: {productsAll.length}
+              </p>
+            </div>
 
             <Sorting
               products={products}
@@ -50,14 +61,20 @@ export default function CollectionContent({
 
         {products.length > 0 ? (
           <div className="flex flex-wrap gap-5">
-            <Sidebar
-              collectionHandle={collection.data.collectionByHandle.handle}
-              productsAll={productsAll}
-              setSelected={setSelected}
-            />
+            {isShownFilters && (
+              <Sidebar
+                collectionHandle={collection.data.collectionByHandle.handle}
+                productsAll={productsAll}
+                setSelected={setSelected}
+              />
+            )}
 
             <main className="flex-1">
-              <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-3 mb-12">
+              <div
+                className={`grid grid-cols-2 gap-3 md:gap-3 mb-12 ${
+                  isShownFilters ? 'md:grid-cols-3' : 'md:grid-cols-4'
+                }`}
+              >
                 {products.map((product) => (
                   <ProductCard
                     key={product.node?.id}
@@ -71,10 +88,12 @@ export default function CollectionContent({
                 ))}
               </div>
 
-              <Pagination
-                handle={collection.data.collectionByHandle.handle}
-                lastPage={Math.ceil(productsAll.length / PER_PAGE)}
-              />
+              {products.length !== productsAll.length && (
+                <Pagination
+                  handle={collection.data.collectionByHandle.handle}
+                  lastPage={Math.ceil(productsAll.length / PER_PAGE)}
+                />
+              )}
             </main>
           </div>
         ) : (

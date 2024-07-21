@@ -56,7 +56,7 @@ export async function getCollection(handle: string) {
           }
         }
       }
-      productsAll: products(first: 250) {
+      productsAll: products(first: 250, sortKey: COLLECTION_DEFAULT) {
         edges {
           cursor
           node {
