@@ -17,7 +17,7 @@ export default function FooterTop({ footerMenu }: { footerMenu: MenuType }) {
           {footerMenu.items.map((menuItem) => (
             <li key={menuItem.id}>
               <Link
-                href={cutPagesMenuLink(menuItem.url)}
+                href={'/page' + cutPagesMenuLink(menuItem.url)}
                 className="underline text-slate-700 font-light"
               >
                 {menuItem.title}

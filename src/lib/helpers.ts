@@ -7,7 +7,7 @@ export function cutMenuLink(menuItem: string) {
 
 export function cutPagesMenuLink(menuItem: string) {
   const url = menuItem.includes('/pages/')
-    ? `/page/${
+    ? `/${
         menuItem.split('https://finswimmershop.myshopify.com' + '/pages/')[1]
       }`
     : '/';
