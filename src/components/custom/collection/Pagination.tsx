@@ -61,8 +61,12 @@ export default function Pagination({
   return (
     <div className="flex gap-1 items-center justify-center">
       {!isFirstPage && (
-        <Button onClick={() => prevPageFn()} variant={'ghost'}>
-          <ChevronLeft strokeWidth={1.25} className="w-fit" />{' '}
+        <Button
+          onClick={() => prevPageFn()}
+          variant={'ghost'}
+          className="flex items-center gap-1"
+        >
+          <ChevronLeft strokeWidth={1.25} />{' '}
           <span className="hidden md:inline">Previous</span>
         </Button>
       )}
@@ -94,7 +98,7 @@ export default function Pagination({
       {!isLastPage && (
         <Button onClick={() => nextPageFn()} variant={'ghost'}>
           <span className="hidden md:inline">Next</span>{' '}
-          <ChevronRight strokeWidth={1.25} className="w-fit" />
+          <ChevronRight strokeWidth={1.25} />
         </Button>
       )}
     </div>

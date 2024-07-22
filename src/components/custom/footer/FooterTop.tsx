@@ -2,7 +2,7 @@ import Link from 'next/link';
 import React from 'react';
 import Logo from '../Logo';
 import { MenuType } from '@/types/MenuType';
-import { cutMenuLink, cutPagesMenuLink } from '@/lib/helpers';
+import { cutPagesMenuLink } from '@/lib/helpers';
 
 export default function FooterTop({ footerMenu }: { footerMenu: MenuType }) {
   return (
@@ -26,10 +26,10 @@ export default function FooterTop({ footerMenu }: { footerMenu: MenuType }) {
           ))}
         </ul>
         <a
-          href="mailto:info@finswimmershop"
+          href="mailto:office@finswimmershop"
           className="text-slate-400 hover:underline hover:text-slate-700 duration-150"
         >
-          info@finswimmershop.com
+          office@finswimmershop.com
         </a>
       </div>
     </div>

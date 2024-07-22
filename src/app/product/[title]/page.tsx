@@ -46,7 +46,7 @@ export async function generateMetadata({
     metadataBase: new URL('https://www.finswimeershop.com'),
     openGraph: {
       title: productTitle,
-      description: productDescription,
+      description: productDescription?.substr(0, 130),
       url: `https://moccotech.com/product/${params.title}`,
       siteName: 'Finswimmershop',
       images: [

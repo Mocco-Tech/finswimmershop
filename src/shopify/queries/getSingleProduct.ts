@@ -2,6 +2,7 @@ import { getData } from '../getData';
 
 export async function getSingleProduct(handle: string) {
   const SingleProductQuery = `#graphql
+    # query SingleProductQuery @inContext(language: FR) {
     query SingleProductQuery {
       productByHandle(handle: "${handle}") {
       handle
