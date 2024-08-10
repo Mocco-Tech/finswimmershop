@@ -50,11 +50,11 @@ export default function MobileCategoriesMenu({
         side={'left'}
         className="!max-w-[30rem] w-[90%] md:w-full pt-5 h-lvh flex flex-col justify-between gap-0 px-0 pb-3"
       >
-        <div className="overflow-y-scroll no-scrollbar px-4 pb-2">
+        <div className="overflow-y-scroll no-scrollbar px-4 pb-2 text-lg">
           <SheetTitle className="text-center text-slate-700 mb-4">
             Categories
           </SheetTitle>
-          <ul>
+          <ul className="flex flex-col gap-1">
             {collections?.items?.map((category) => (
               <li key={category.title}>
                 {category.items.length > 0 ? (
@@ -68,7 +68,7 @@ export default function MobileCategoriesMenu({
                       isVisibleCategory.isVisible ? (
                         <ChevronUp
                           strokeWidth={1}
-                          className="bg-slate-50 rounded w-6 h-6 text-center text-slate-500"
+                          className="bg-slate-50 rounded w-7 h-7 text-center text-slate-500"
                           onClick={() =>
                             handleCategorySubmenu(
                               category.id,
@@ -80,7 +80,7 @@ export default function MobileCategoriesMenu({
                       ) : (
                         <ChevronDown
                           strokeWidth={1}
-                          className="bg-slate-50 rounded w-6 h-6 text-center text-slate-500"
+                          className="bg-slate-50 rounded w-7 h-7 text-center text-slate-500"
                           onClick={() =>
                             handleCategorySubmenu(category.id, true, 'category')
                           }
@@ -103,7 +103,7 @@ export default function MobileCategoriesMenu({
                                     isVisibleSubCategory.isVisible ? (
                                       <ChevronUp
                                         strokeWidth={1}
-                                        className="bg-slate-50 rounded w-6 h-6 text-center text-slate-500"
+                                        className="bg-slate-50 rounded w-7 h-7 text-center text-slate-500"
                                         onClick={() =>
                                           handleCategorySubmenu(
                                             subCategory.id,
@@ -115,7 +115,7 @@ export default function MobileCategoriesMenu({
                                     ) : (
                                       <ChevronDown
                                         strokeWidth={1}
-                                        className="bg-slate-50 rounded w-6 h-6 text-center text-slate-500"
+                                        className="bg-slate-50 rounded w-7 h-7 text-center text-slate-500"
                                         onClick={() =>
                                           handleCategorySubmenu(
                                             subCategory.id,
