@@ -44,7 +44,7 @@ export default function ProductCard({
           alt={`${title} image`}
           width={500}
           height={500}
-          className="w-full h-48 sm:h-64 md:h-72 lg:h-96 object-contain rounded-md mb-2"
+          className="w-full h-48 sm:h-64 md:h-72 lg:h-96 object-cover rounded-md mb-2"
         />
       </div>
       <h4 className="underline text-slate-600 mb-2">{title}</h4>

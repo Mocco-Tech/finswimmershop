@@ -56,8 +56,8 @@ export default async function Home({
 
   return (
     <section className="p-4 md:p-5">
-      <div className="flex items-center flex-col-reverse md:flex-row gap-5">
-        <div className="w-full md:flex-1">
+      {/* <div className="flex items-center flex-col-reverse md:flex-row gap-5"> */}
+      {/* <div className="w-full md:flex-1">
           <div className="px-4 py-1 border border-slate-400 text-slate-600 rounded-lg w-fit mb-1 lg:mb-4">
             {bannerCategory.reference.title}
           </div>
@@ -90,33 +90,39 @@ export default async function Home({
             <ArrowRight strokeWidth={1} className="mr-1 w-5" />{' '}
             {bannerBtnTitle.value}
           </Link>
-        </div>
+        </div> */}
 
-        <div className="h-96 md:h-[650px] w-full md:w-1/2 relative rounded-xl overflow-hidden flex items-center px-4 md:px-8">
-          <div className="z-10 bg-black/40 w-full h-96 md:h-[650px] absolute top-0 left-0"></div>
-          <Image
-            src="/empty-category.jpg"
-            alt="Home page banner image"
-            width={1000}
-            height={1000}
-            priority
-            className="absolute w-full h-full object-cover top-0 left-0 z-0"
-          />
+      <div className="h-96 py-6 md:h-[650px] w-full relative rounded-xl overflow-hidden flex items-center px-4 md:px-8">
+        <div className="z-10 bg-black/55 w-full h-96 md:h-[650px] absolute top-0 left-0"></div>
+        <Image
+          src="/empty-category.jpg"
+          alt="Home page banner image"
+          width={1000}
+          height={1000}
+          priority
+          className="absolute w-full h-full object-cover top-0 left-0 z-0"
+        />
 
-          <div className="z-10 text-slate-50 flex flex-col gap-3 items-start">
-            <h2 className="font-heading text-xl lg:text-4xl font-medium">
-              Welcome to Finswimmershop
-            </h2>
-            <p className="text-slate-100">
-              Your premier destination for high-quality underwater sports
-              equipment. At Finswimmershop.com, we specialize in selling a wide
-              range of fins, masks, snorkels, wetsuits and other accessories
-              from the world&apos;s leading manufacturers. Our mission is to
-              make professional equipment accessible and easy to buy, ensuring
-              that you have everything you need to succeed in your underwater
-              adventures.
-            </p>
-            {/* <Link
+        <div className="z-10 text-slate-50 flex flex-col gap-3 md:items-center md:text-center w-full">
+          <h2 className="font-heading text-xl lg:text-4xl font-medium">
+            Welcome to Finswimmer Shop
+          </h2>
+          <p className="text-slate-50 md:text-lg block md:max-w-[50vw]">
+            Your premier destination for high-quality{' '}
+            <strong>underwater sports equipment</strong>. Our mission is to make
+            professional equipment <strong>accessible</strong> and{' '}
+            <strong>easy to buy</strong>.
+          </p>
+          <Link
+            href=""
+            className={buttonVariants({
+              className: 'mt-4 !bg-slate-50 !text-slate-800 md:w-64',
+              variant: 'default',
+            })}
+          >
+            Shop now
+          </Link>
+          {/* <Link
               href="/"
               className={buttonVariants({
                 variant: 'link',
@@ -135,11 +141,9 @@ export default async function Home({
             >
               Sign in
             </Link> */}
-          </div>
         </div>
       </div>
-
-      <CollectionsGrid collections={homepageCollections} />
+      {/* </div> */}
 
       <div className="py-10">
         <h3 className="text-slate-700 font-heading text-3xl mb-5">
@@ -160,6 +164,8 @@ export default async function Home({
           )}
         </div>
       </div>
+
+      <CollectionsGrid collections={homepageCollections} />
     </section>
   );
 }
