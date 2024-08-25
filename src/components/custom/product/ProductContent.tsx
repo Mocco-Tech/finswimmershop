@@ -14,7 +14,7 @@ export default function ProductContent() {
   const product = productData.product as ExtendetProduct;
 
   return (
-    <div className="md:p-4">
+    <div className="md:p-4 mb-4">
       <div className="bg-slate-100 w-full h-fit p-2 md:p-4 rounded-t-none rounded-b-2xl sm:rounded-2xl flex flex-col lg:flex-row items-start gap-5">
         <ImageGallery
           //  @ts-ignore

@@ -40,7 +40,7 @@ export async function generateMetadata({
     : '/no-image.webp';
 
   return {
-    title: productTitle,
+    title: productTitle + ' - Finswimmer Shop',
     description: `${productDescription?.substr(0, 130)}`,
 
     metadataBase: new URL('https://www.finswimeershop.com'),
