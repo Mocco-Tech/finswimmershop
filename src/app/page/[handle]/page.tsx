@@ -30,7 +30,7 @@ export default async function PagesPage({ params }: { params: Params }) {
             {footerMenu.data.menu.items.map((menuItem: MenuType) => (
               <li key={menuItem.id}>
                 <Link
-                  href={`/page/${cutPagesMenuLink(menuItem.url)}`}
+                  href={cutPagesMenuLink(menuItem.url)}
                   className={`block peer text-slate-600 px-4 py-3 duration-150 ${
                     cutPagesMenuLink(menuItem.url) === params.handle
                       ? 'bg-slate-100'
