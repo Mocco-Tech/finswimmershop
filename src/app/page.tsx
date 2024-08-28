@@ -117,13 +117,13 @@ export default async function Home({
 export const metadata: Metadata = {
   title: 'Finswimmer Shop - buy underwater sports equipment',
   description:
-    "Finswimming, Freedivng and UW Sports gears from the world's leading manufacturers at best prices. Shop now - we ship worldwide.",
+    "Finswimming, Freediving and UW Sports gears from the world's leading manufacturers at best prices. Shop now - we ship worldwide.",
 
   metadataBase: new URL('https://www.finswimmershop.com'),
   openGraph: {
     title: `Finswimmer Shop - buy underwater sports equipment`,
     description:
-      "Finswimming, Freedivng and UW Sports gear from the world's leading manufacturers at best prices. Shop now - we ship worldwide.",
+      "Finswimming, Freediving and UW Sports gear from the world's leading manufacturers at best prices. Shop now - we ship worldwide.",
     url: `https://finswimmershop.com`,
     siteName: 'Finswimmer Shop',
     images: [
