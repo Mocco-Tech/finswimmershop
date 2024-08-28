@@ -56,42 +56,6 @@ export default async function Home({
 
   return (
     <section className="p-4 md:p-5">
-      {/* <div className="flex items-center flex-col-reverse md:flex-row gap-5"> */}
-      {/* <div className="w-full md:flex-1">
-          <div className="px-4 py-1 border border-slate-400 text-slate-600 rounded-lg w-fit mb-1 lg:mb-4">
-            {bannerCategory.reference.title}
-          </div>
-          <div className="overflow-hidden rounded-lg h-80 md:h-96 w-full mb-4">
-            <Image
-              src={
-                bannerImg
-                  ? bannerImg.reference.image.src
-                  : '/empty-category.jpg'
-              }
-              alt="Banner image"
-              width={500}
-              height={500}
-              className="w-full h-full object-cover"
-              priority
-            />
-          </div>
-          <h2 className="text-slate-700 text-2xl lg:text-3xl font-heading font-light mb-1 lg:mb-2">
-            {bannerTitle.value}
-          </h2>
-          <p className="text-slate-400 mb-1 lg:mb-2">{bannerDesc.value}</p>
-          <Link
-            href={'/collections/' + bannerCategory.reference.handle}
-            className={buttonVariants({
-              className:
-                '!px-0 uppercase font-body md:!text-lg !font-normal !text-slate-600 tracking-tight',
-              variant: 'link',
-            })}
-          >
-            <ArrowRight strokeWidth={1} className="mr-1 w-5" />{' '}
-            {bannerBtnTitle.value}
-          </Link>
-        </div> */}
-
       <div className="h-96 py-6 md:h-[650px] w-full relative rounded-xl overflow-hidden flex items-center px-4 md:px-8">
         <div className="z-10 bg-black/55 w-full h-96 md:h-[650px] absolute top-0 left-0"></div>
         <Image
@@ -122,28 +86,8 @@ export default async function Home({
           >
             Shop now
           </Link>
-          {/* <Link
-              href="/"
-              className={buttonVariants({
-                variant: 'link',
-                className:
-                  '!p-0 h-fit !text-slate-50 uppercase !flex !flex-wrap !whitespace-normal',
-              })}
-            >
-              Not a member? Sign up for Finswimmershop!
-            </Link>
-            <Link
-              href="/"
-              className={buttonVariants({
-                variant: 'link',
-                className: '!p-0 h-fit !text-slate-50 uppercase',
-              })}
-            >
-              Sign in
-            </Link> */}
         </div>
       </div>
-      {/* </div> */}
 
       <div className="py-10">
         <h3 className="text-slate-700 font-heading text-3xl mb-5">
@@ -171,15 +115,15 @@ export default async function Home({
 }
 
 export const metadata: Metadata = {
-  title: 'Finswimmer Shop | Finswimming, Freediving & UW Sports Gear',
+  title: 'Finswimmer Shop - buy underwater sports equipment',
   description:
-    "Finswimming, Freeidivng and UW Sports gear from the world's leading manufacturers at best prices. Shop now - we ship worldwide.",
+    "Finswimming, Freedivng and UW Sports gears from the world's leading manufacturers at best prices. Shop now - we ship worldwide.",
 
   metadataBase: new URL('https://www.finswimmershop.com'),
   openGraph: {
-    title: `Finswimmer Shop | Finswimming, Freediving & UW Sports Gear`,
+    title: `Finswimmer Shop - buy underwater sports equipment`,
     description:
-      "Finswimming, Freeidivng and UW Sports gear from the world's leading manufacturers at best prices. Shop now - we ship worldwide.",
+      "Finswimming, Freedivng and UW Sports gear from the world's leading manufacturers at best prices. Shop now - we ship worldwide.",
     url: `https://finswimmershop.com`,
     siteName: 'Finswimmer Shop',
     images: [
