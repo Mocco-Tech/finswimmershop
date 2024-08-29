@@ -41,12 +41,12 @@ export async function generateMetadata({
 
   return {
     title: productTitle + ' - Finswimmer Shop',
-    description: `${productDescription?.substr(0, 130)}`,
+    description: `${productDescription?.substr(0, 155)}`,
 
     metadataBase: new URL('https://www.finswimeershop.com'),
     openGraph: {
       title: productTitle,
-      description: productDescription?.substr(0, 130),
+      description: productDescription?.substr(0, 155),
       url: `https://moccotech.com/product/${params.title}`,
       siteName: 'Finswimmershop',
       images: [
