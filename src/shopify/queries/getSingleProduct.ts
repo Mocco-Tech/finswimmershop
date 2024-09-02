@@ -70,11 +70,13 @@ export async function getSingleProduct(handle: string) {
       metafields(identifiers: [
         {key: "size", namespace: "custom"},
         {key: "foot_width", namespace: "custom"},
+        {key: "footpockets_stiffness", namespace: "custom"},
         {key: "blade_stiffness", namespace: "custom"},
         {key: "blade_width", namespace: "custom"}
         {key: "blade_length", namespace: "custom"}
         {key: "blade_colour", namespace: "custom"}
         {key: "rails_color", namespace: "custom"}
+        {key: "guides_colour", namespace: "custom"}
         {key: "preferred_wings_color", namespace: "custom"}
         {key: "preferred_footpockets_color", namespace: "custom"}
         {key: "distance", namespace: "custom"},

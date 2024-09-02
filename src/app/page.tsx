@@ -13,6 +13,8 @@ import Link from 'next/link';
 
 export const revalidate = 3600;
 
+const itemsPerHomeGrid = 8;
+
 export default async function Home({
   searchParams,
 }: {
@@ -94,8 +96,9 @@ export default async function Home({
           New arrivals
         </h3>
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
-          {collectionProps.data.collectionByHandle.products.edges.map(
-            (product: { node: ProductType }) => (
+          {collectionProps.data.collectionByHandle.products.edges
+            .slice(0, itemsPerHomeGrid)
+            .map((product: { node: ProductType }) => (
               <ProductCard
                 key={product.node?.id}
                 imageFirst={product.node?.images?.edges?.[0]?.node.url}
@@ -104,8 +107,7 @@ export default async function Home({
                 price={product.node?.priceRange.minVariantPrice}
                 title={product.node?.title}
               />
-            )
-          )}
+            ))}
         </div>
       </div>
 

@@ -21,7 +21,7 @@ export default function ProductOptions({
     case 'options':
       return (
         <div className="w-full flex flex-col justify-between items-start gap-1">
-          <label className="text-slate-600/80 text-xs">Select {name}</label>
+          <label className="text-slate-600 text-xs">Select {name}</label>
           <select
             name={name}
             id={name}
@@ -43,10 +43,11 @@ export default function ProductOptions({
     case 'metafields':
       return (
         <div className="w-full flex flex-col justify-between items-start gap-1">
-          <label className="text-slate-600/80 text-xs capitalize">
+          <label className="text-slate-600 text-xs capitalize">
             Select {/* @ts-ignore */}
             {values[0].node.type.replace('_', ' ')}
           </label>
+          {/* {values[0].node.type !== 'size' && ( */}
           <select
             onChange={(e) =>
               handleSelect && handleSelect(selectedKey!, e.target.value)
@@ -67,6 +68,26 @@ export default function ProductOptions({
               </option>
             ))}
           </select>
+          {/* // )} */}
+
+          {/* {values[0].node.type === 'size' && (
+            <fieldset>
+              {values.map((option) => (
+                <div className="" key={option.node.handle}>
+                  <input
+                    type="radio"
+                    // @ts-ignore
+                    value={option.node.fields[0].value}
+                    // @ts-ignore
+                    name={values[0].node.type.replace('_', ' ')}
+                  />
+                  <label htmlFor={option.node.fields[0].value}>
+                    {option.node.fields[0].value} | {values[0].node.type}
+                  </label>
+                </div>
+              ))}
+            </fieldset>
+          )} */}
         </div>
       );
   }

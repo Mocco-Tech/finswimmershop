@@ -33,10 +33,10 @@ export default function BrandBtn({
     <button
       key={brand.handle}
       onClick={() => handleClick()}
-      className={`border border-slate-200 px-2 py-2 rounded-lg hover:border-slate-500 duration-150 ${
+      className={`border border-slate-300 px-2 py-2 rounded-lg hover:border-slate-500 duration-150 ${
         searchParams.get('brand') === brand.handle
           ? 'bg-slate-700 text-slate-50'
-          : 'bg-transparent'
+          : 'bg-transparent text-slate-700'
       }`}
     >
       {brand.name}
