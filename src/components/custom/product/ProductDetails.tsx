@@ -65,7 +65,9 @@ export default function ProductDetails({
         </h1>
 
         <h2 className="uppercase font-medium text-slate-600/90 tracking-tight mb-3">
-          {product?.collections?.edges?.[0]?.node?.title}
+          {product?.collections?.edges?.[0]?.node?.title === 'Home page'
+            ? product?.collections?.edges?.[1]?.node?.title
+            : product?.collections?.edges?.[0]?.node?.title}
         </h2>
 
         {product?.metafields.length > 0 && (
