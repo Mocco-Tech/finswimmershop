@@ -79,6 +79,8 @@ export async function getSingleProduct(handle: string) {
         {key: "guides_colour", namespace: "custom"}
         {key: "preferred_wings_color", namespace: "custom"}
         {key: "preferred_footpockets_color", namespace: "custom"}
+        {key: "monofin_main_colour", namespace: "custom"}
+        {key: "monofin_secondary_colour", namespace: "custom"}
         {key: "distance", namespace: "custom"},
         ]) {
         id
