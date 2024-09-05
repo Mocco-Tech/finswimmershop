@@ -14,6 +14,7 @@ import { SpeedInsights } from '@vercel/speed-insights/next';
 import { Analytics } from '@vercel/analytics/react';
 import { GoogleAnalytics } from '@next/third-parties/google';
 import { CurrencyContextProvider } from '@/contexts/CurrencyContext';
+// @ts-ignore
 import Freecurrencyapi from '@everapi/freecurrencyapi-js';
 
 const freecurrencyapi = new Freecurrencyapi(
