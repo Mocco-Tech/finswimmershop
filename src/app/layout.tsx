@@ -1,4 +1,3 @@
-import type { Metadata } from 'next';
 import { Jost, Montserrat } from 'next/font/google';
 import './globals.css';
 import CartDataProvider from '@/components/custom/cart/CartDataProvider';
@@ -14,6 +13,12 @@ import { Sheet } from '@/components/ui/sheet';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import { Analytics } from '@vercel/analytics/react';
 import { GoogleAnalytics } from '@next/third-parties/google';
+import { CurrencyContextProvider } from '@/contexts/CurrencyContext';
+import Freecurrencyapi from '@everapi/freecurrencyapi-js';
+
+const freecurrencyapi = new Freecurrencyapi(
+  'fca_live_apo8r7W9kCbCHm5aH3RUjwtkh32VthWBxKk2Y6Zs'
+);
 
 const heading = Jost({
   subsets: ['latin'],
@@ -27,6 +32,8 @@ const body = Montserrat({
   variable: '--font-body',
 });
 
+export const revalidate = 3600;
+
 export default async function RootLayout({
   children,
 }: Readonly<{
@@ -37,6 +44,33 @@ export default async function RootLayout({
   const footerMenu = await getMenu('footer');
   const localizations = await getLocalizations();
 
+  const { data: currencies } = await freecurrencyapi.latest({
+    base_currency: 'EUR',
+    currencies: [
+      'USD',
+      'JPY',
+      'EUR',
+      'CZK',
+      'GBP',
+      'HUF',
+      'PLN',
+      'SEK',
+      'CHF',
+      'NOK',
+      'TRY',
+      'AUD',
+      'CAD',
+      'CNY',
+      'HKD',
+      'KRW',
+      'NZD',
+      'SGD',
+      'THB',
+      'ZAR',
+      'DKK',
+    ],
+  });
+
   return (
     <html lang="en">
       <body className={`${heading.variable} ${body.variable} font-body`}>
@@ -45,24 +79,26 @@ export default async function RootLayout({
         <GoogleAnalytics gaId="G-0ZD8WTEF3W" />
         <ShopifyDataProvider>
           <CartDataProvider>
-            <Sheet>
-              <NextTopLoader color="#0ea5e9" showSpinner={false} />
-              <Header
-                collections={collections.data.menu}
-                menu={menu.data.menu}
-                languages={localizations.data.localization.availableLanguages}
-                currentLanguage={localizations.data.localization.language}
-              />
-              {children}
-              <Toaster
-                position="top-center"
-                richColors={true}
-                offset={10}
-                duration={3000}
-              />
-              <MobileNav collections={collections.data.menu} />
-              <Footer footerMenu={footerMenu.data.menu} />
-            </Sheet>
+            <CurrencyContextProvider currencies={currencies}>
+              <Sheet>
+                <NextTopLoader color="#0ea5e9" showSpinner={false} />
+                <Header
+                  collections={collections.data.menu}
+                  menu={menu.data.menu}
+                  languages={localizations.data.localization.availableLanguages}
+                  currentLanguage={localizations.data.localization.language}
+                />
+                {children}
+                <Toaster
+                  position="top-center"
+                  richColors={true}
+                  offset={10}
+                  duration={3000}
+                />
+                <MobileNav collections={collections.data.menu} />
+                <Footer footerMenu={footerMenu.data.menu} />
+              </Sheet>
+            </CurrencyContextProvider>
           </CartDataProvider>
         </ShopifyDataProvider>
       </body>

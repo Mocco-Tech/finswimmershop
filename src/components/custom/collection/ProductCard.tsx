@@ -5,6 +5,8 @@ import { Money } from '@shopify/hydrogen-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { CurrencyCode } from '@shopify/hydrogen-react/storefront-api-types';
+import { useCurrencyContext } from '@/contexts/CurrencyContext';
+import { changePriceCurrency } from '@/lib/helpers';
 
 interface Props {
   link: string;
@@ -26,7 +28,9 @@ export default function ProductCard({
   isNew,
 }: Props) {
   const [currentImage, setCurrentImage] = useState(imageFirst);
+  const { currency } = useCurrencyContext();
 
+  const newPrice = changePriceCurrency(price, currency);
   return (
     <Link
       href={`/product/${link}`}
@@ -51,7 +55,7 @@ export default function ProductCard({
       <div>
         {oldPrice && <Money data={oldPrice} className="line-through" />}
         <Money
-          data={price}
+          data={newPrice}
           className={oldPrice ? 'text-red-500' : 'text-slate-700'}
         />
       </div>

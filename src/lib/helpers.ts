@@ -78,3 +78,15 @@ export function getSortedProducts(
       break;
   }
 }
+
+export function changePriceCurrency(
+  oldPrice: { amount: string; currencyCode: string },
+  currency: { isoCode: string; rate: number }
+) {
+  const updatedPrice = {
+    ...oldPrice,
+    amount: Math.ceil(Number(oldPrice.amount) * currency.rate).toString(),
+    currencyCode: currency.isoCode,
+  };
+  return updatedPrice;
+}

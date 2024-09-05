@@ -9,6 +9,8 @@ import AccordionSection from './product-details/AccordionSection';
 
 import { ProductType } from '@/types/ProductType';
 import { SelectedVariantType } from '@/types/SelectedVariantType';
+import { useCurrencyContext } from '@/contexts/CurrencyContext';
+import { changePriceCurrency } from '@/lib/helpers';
 
 type SelectedAttributes = { key: string; value: string };
 
@@ -26,6 +28,7 @@ export default function ProductDetails({
   options,
 }: Props) {
   const price = product?.variants?.edges?.[0]?.node?.price;
+  const { currency } = useCurrencyContext();
 
   const [selecteAttributes, setSelecteAttributes] = useState<
     SelectedAttributes[]
@@ -52,6 +55,8 @@ export default function ProductDetails({
           ]
     );
   }
+
+  const newPrice = changePriceCurrency(selectedVariant.price, currency);
 
   return (
     <div
@@ -113,7 +118,8 @@ export default function ProductDetails({
           )}
           <Money
             // @ts-ignore
-            data={selectedVariant ? selectedVariant?.price! : price!}
+            // data={selectedVariant ? selectedVariant?.price! : price!}
+            data={newPrice}
             className={
               selectedVariant.compareAtPrice
                 ? 'text-red-500 text-lg'

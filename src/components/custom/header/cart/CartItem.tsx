@@ -5,8 +5,13 @@ import { CartLine } from '@shopify/hydrogen-react/storefront-api-types';
 
 import DeleteItemBtn from './DeleteItemBtn';
 import CartQtyButtons from './CartQtyButtons';
+import { useCurrencyContext } from '@/contexts/CurrencyContext';
+import { changePriceCurrency } from '@/lib/helpers';
 
 export default function CartItem({ line }: { line: CartLine }) {
+  const { currency } = useCurrencyContext();
+  const newPrice = changePriceCurrency(line?.cost?.totalAmount, currency);
+
   return (
     <div className="border-b border-slate-200 pb-5">
       <div className="flex items-start gap-3">
@@ -24,34 +29,29 @@ export default function CartItem({ line }: { line: CartLine }) {
             {line?.merchandise?.product?.title}
           </p>
           <p className="text-sm text-slate-500">
-            {line?.merchandise?.selectedOptions?.map((option, index) => {
-              return (
+            {line?.merchandise?.selectedOptions?.map(
+              (option, index) =>
                 option?.name !== 'Title' && (
                   <span key={option?.name}>
-                    {index ? ' / ' : ''}
                     {option?.value}
+                    {index ? ' / ' : ''}
                   </span>
                 )
-              );
-            })}
-            {line?.attributes?.map((option, index) => {
-              return (
+            )}
+            {line?.attributes?.map(
+              (option, index) =>
                 option?.key !== 'Title' && (
                   <span key={option?.key}>
+                    {option?.value}
                     {index || line?.merchandise?.selectedOptions.length > 0
                       ? ' / '
                       : ''}
-                    {option?.value}
                   </span>
                 )
-              );
-            })}
+            )}
           </p>
 
-          <Money
-            className="mt-1 font-medium text-slate-700"
-            data={line?.cost?.totalAmount!}
-          />
+          <Money className="mt-1 font-medium text-slate-700" data={newPrice} />
 
           <div className="mt-4 flex justify-between items-center">
             <DeleteItemBtn />

@@ -1,9 +1,7 @@
 import React from 'react';
 import CartHeaderItem from '../cart/CartHeaderItem';
-import LanguageBtn from './LanguageBtn';
 import { LanguageType } from '@/types/LanguageType';
-import HeaderBtn from './HeaderBtn';
-import SearchBtn from './SearchBtn';
+import CurrencyBtn from './CurrencyBtn';
 
 export default function HeaderButtons({
   languages,
@@ -24,6 +22,9 @@ export default function HeaderButtons({
           <span key={currentLanguage.isoCode}>{currentLanguage.isoCode}</span>
         </HeaderBtn>
       </LanguageBtn> */}
+
+      <CurrencyBtn />
+
       <CartHeaderItem />
     </div>
   );
