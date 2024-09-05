@@ -55,6 +55,7 @@ export default function ProductCard({
       <div>
         {oldPrice && <Money data={oldPrice} className="line-through" />}
         <Money
+          // @ts-ignore
           data={newPrice}
           className={oldPrice ? 'text-red-500' : 'text-slate-700'}
         />

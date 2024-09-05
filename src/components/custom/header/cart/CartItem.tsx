@@ -51,6 +51,7 @@ export default function CartItem({ line }: { line: CartLine }) {
             )}
           </p>
 
+          {/* @ts-ignore */}
           <Money className="mt-1 font-medium text-slate-700" data={newPrice} />
 
           <div className="mt-4 flex justify-between items-center">
