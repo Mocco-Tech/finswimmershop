@@ -56,6 +56,8 @@ export default function ProductDetails({
     );
   }
 
+  // console.log(product.metafields);
+
   const newPrice = changePriceCurrency(selectedVariant.price, currency);
 
   return (
@@ -77,11 +79,13 @@ export default function ProductDetails({
 
         {product?.metafields.length > 0 && (
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2 gap-5">
-            {product?.metafields.map(
-              (select) =>
+            {product?.metafields.map((select) => {
+              console.log(select);
+              return (
                 select && (
                   <ProductOptions
                     key={select?.key}
+                    name={select.key.replaceAll('_', ' ')}
                     // @ts-ignore
                     values={select?.references?.edges!}
                     type="metafields"
@@ -89,7 +93,8 @@ export default function ProductDetails({
                     selectedKey={select?.key}
                   />
                 )
-            )}
+              );
+            })}
 
             {options.length > 0 &&
               product?.variants?.edges?.length > 1 &&

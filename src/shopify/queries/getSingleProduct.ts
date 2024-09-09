@@ -86,6 +86,12 @@ export async function getSingleProduct(handle: string) {
         id
         key
         value
+        reference {
+        ... on Metaobject {
+          id
+          handle
+        }
+      }
         references(first: 50) {
                 edges {
                   node {

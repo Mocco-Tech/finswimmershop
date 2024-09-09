@@ -44,8 +44,8 @@ export default function ProductOptions({
       return (
         <div className="w-full flex flex-col justify-between items-start gap-1">
           <label className="text-slate-600 text-xs capitalize">
-            Select {/* @ts-ignore */}
-            {values[0].node.type.replace('_', ' ')}
+            Select {name}
+            {/* {values[0].node.type.replace('_', ' ')} */}
           </label>
           {/* {values[0].node.type !== 'size' && ( */}
           <select
