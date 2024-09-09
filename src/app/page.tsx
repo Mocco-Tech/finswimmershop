@@ -6,7 +6,6 @@ import { getHomepageCollections } from '@/shopify/queries/getHomepageCollections
 import { getPage } from '@/shopify/queries/getPage';
 import { getSearchProducts } from '@/shopify/queries/getSearchProducts';
 import { ProductType } from '@/types/ProductType';
-import { ArrowRight } from 'lucide-react';
 import { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
