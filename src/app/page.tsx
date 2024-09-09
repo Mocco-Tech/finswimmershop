@@ -79,7 +79,7 @@ export default async function Home({
             <strong>easy to buy</strong>.
           </p>
           <Link
-            href=""
+            href="/shop"
             className={buttonVariants({
               className: 'mt-4 !bg-slate-50 !text-slate-800 md:w-64',
               variant: 'default',

@@ -28,7 +28,7 @@ export default function CollectionCard({
         alt={title}
         width={1500}
         height={500}
-        className="h-[400px] absolute top-0 left-0 object-cover"
+        className="h-[400px] w-full absolute top-0 left-0 object-cover"
       />
       <div className="z-20 block relative">
         <h3 className="font-heading text-2xl font-medium text-slate-50 mb-2">
