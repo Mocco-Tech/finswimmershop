@@ -27,7 +27,7 @@ export default function ImageGallery({
         priority
       />
       {images?.length! > 1 && (
-        <div className="flex flex-row w-full sm:flex-col sm:w-1/5 gap-2 overflow-x-auto">
+        <div className="flex flex-row w-full sm:flex-col sm:w-1/5 gap-2 no-scrollbar overflow-auto lg:max-h-[550px] h-fulllg:">
           {images?.map((image) => (
             <Image
               key={image?.node?.id}
