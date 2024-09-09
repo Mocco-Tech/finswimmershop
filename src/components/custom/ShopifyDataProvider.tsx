@@ -10,8 +10,8 @@ export default function ShopifyDataProvider({
 }) {
   return (
     <ShopifyProvider
-      storeDomain={process.env.NEXT_PUBLIC_PUBLIC_STORE_DOMAIN!}
-      storefrontToken={process.env.NEXT_PUBLIC_PUBLIC_STOREFRONT_API_TOKEN!}
+      storeDomain="https://finswimmershop.myshopify.com"
+      storefrontToken="0d84fa32bf13e82e537d8816b577ff67"
       storefrontApiVersion="2024-07"
       countryIsoCode="EE"
       languageIsoCode="EN"
