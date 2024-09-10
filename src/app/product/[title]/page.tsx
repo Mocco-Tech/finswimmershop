@@ -5,19 +5,21 @@ import { notFound } from 'next/navigation';
 import { getSingleProduct } from '@/shopify/queries/getSingleProduct';
 import ProductDataProvider from '@/components/custom/product/ProductDataProvider';
 import ProductContent from '@/components/custom/product/ProductContent';
+import StructuredData from '@/components/custom/product/StructuredData';
 
 export const revalidate = 3600;
 
 export default async function ProductPage({ params }: { params: Params }) {
-  const product = await getSingleProduct(params.title);
-
-  if (!product?.data?.productByHandle) {
+  const productObj = await getSingleProduct(params.title);
+  const product = productObj?.data?.productByHandle;
+  if (!product) {
     notFound();
   }
 
   return (
-    <ProductDataProvider product={product.data.productByHandle}>
+    <ProductDataProvider product={product}>
       <ProductContent />
+      <StructuredData product={product} />
     </ProductDataProvider>
   );
 }
