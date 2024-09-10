@@ -21,7 +21,7 @@ export default function ImageGallery({
         alt={`${productTitle} main image`}
         width={800}
         height={800}
-        className={`object-cover rounded-lg w-full h-fit sm:max-h-fit lg:h-fit ${
+        className={`object-cover rounded-lg w-full h-full sm:max-h-full lg:h-full ${
           images?.length > 1 ? 'sm:w-5/6' : 'sm:w-full'
         }`}
         priority
