@@ -25,7 +25,7 @@ export default function StructuredData({ product }: { product: ProductType }) {
     image: product.images.edges[0].node.url,
     description: productDescription,
     brand: {
-      '@type': 'Thing',
+      '@type': 'Brand',
       name: product.brand.references.edges[0].node.handle,
     },
     aggregateRating: {
@@ -42,6 +42,7 @@ export default function StructuredData({ product }: { product: ProductType }) {
       availability: 'https://schema.org/InStock',
     },
   };
+
   return (
     <script
       type="application/ld+json"
