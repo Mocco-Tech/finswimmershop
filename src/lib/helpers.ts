@@ -1,4 +1,5 @@
 import { ProductType } from '@/types/ProductType';
+// import { redirect } from 'next/navigation';
 
 export function cutMenuLink(menuItem: string) {
   const url = menuItem.split('https://finswimmershop.myshopify.com')[1];

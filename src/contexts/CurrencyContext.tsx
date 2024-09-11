@@ -28,9 +28,14 @@ export const CurrencyContextProvider = ({
   const [currency, setCurrency] = useState({ isoCode: 'EUR', rate: 1 });
 
   useEffect(() => {
-    const params = new URLSearchParams(searchParams);
-    params.set('currency', currency.isoCode);
-    replace(`${pathname}?${params.toString()}`, { scroll: false });
+    if (currency.isoCode !== 'EUR') {
+      const params = new URLSearchParams(searchParams);
+      params.set('currency', currency.isoCode);
+      replace(`${pathname}?${params.toString()}`, { scroll: false });
+    } else if (currency.isoCode === 'EUR') {
+      const params = new URLSearchParams(searchParams);
+      replace(`${pathname}`, { scroll: false });
+    }
   }, [currency, pathname, searchParams, replace]);
 
   const allCurrencies = Object.entries(currencies).map((e) => ({

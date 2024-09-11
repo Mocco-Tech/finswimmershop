@@ -8,6 +8,7 @@ import Link from 'next/link';
 import { cutPagesMenuLink } from '@/lib/helpers';
 import { MenuType } from '@/types/MenuType';
 import { notFound } from 'next/navigation';
+import PagesSidebar from '@/components/custom/pages/PagesSidebar';
 
 export const revalidate = 3600;
 
@@ -25,26 +26,9 @@ export default async function PagesPage({ params }: { params: Params }) {
         Information for customers
       </h2>
       <div className="flex flex-col-reverse gap-5 md:flex-row md:gap-0 flex-wrap">
-        <aside className="md:border-r border-slate-100 w-full md:w-1/5 md:p-4 pt-0">
-          <ul className="">
-            {footerMenu.data.menu.items.map((menuItem: MenuType) => (
-              <li key={menuItem.id}>
-                <Link
-                  href={cutPagesMenuLink(menuItem.url)}
-                  className={`block peer text-slate-600 px-4 py-3 duration-150 ${
-                    cutPagesMenuLink(menuItem.url) === params.handle
-                      ? 'bg-slate-100'
-                      : 'bg-white hover:bg-slate-100'
-                  }`}
-                >
-                  {menuItem.title}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </aside>
+        <PagesSidebar menu={footerMenu.data.menu.items} params={params} />
         <main className="flex-1 md:px-6">
-          <h1 className="text-slate-700 font-heading text-2xl mb-4">
+          <h1 className="text-slate-800 font-heading text-2xl mb-4">
             {props.data.pageByHandle.title}
           </h1>
           <PageContent
@@ -78,7 +62,7 @@ export async function generateMetadata({
     openGraph: {
       title: `Finswimmer Shop | ${seoTitle}`,
       description: seoDescription,
-      url: `https://www.finswimmershop.com/pages/${params?.handle}`,
+      url: `https://www.finswimmershop.com/page/${params?.handle}`,
       siteName: 'Finswimmer Shop',
       images: [
         {

@@ -3,10 +3,19 @@ import FooterTop from './FooterTop';
 import FooterBottom from './FooterBottom';
 import { MenuType } from '@/types/MenuType';
 
-export default function Footer({ footerMenu }: { footerMenu: MenuType }) {
+export default function Footer({
+  policyMenu,
+  helpAndSupportMenu,
+}: {
+  policyMenu: MenuType;
+  helpAndSupportMenu: MenuType;
+}) {
   return (
     <footer className="px-2 md:px-4 mb-4">
-      <FooterTop footerMenu={footerMenu} />
+      <FooterTop
+        policyMenu={policyMenu}
+        helpAndSupportMenu={helpAndSupportMenu}
+      />
       <FooterBottom />
     </footer>
   );

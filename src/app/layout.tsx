@@ -43,7 +43,8 @@ export default async function RootLayout({
 }>) {
   const menu = await getMenu('main-menu');
   const collections = await getMenu('collections');
-  const footerMenu = await getMenu('footer');
+  const helpAndSupportMenu = await getMenu('help-and-support');
+  const policyMenu = await getMenu('our-policy');
   const localizations = await getLocalizations();
 
   const { data: currencies } = await freecurrencyapi.latest({
@@ -94,14 +95,12 @@ export default async function RootLayout({
                     currentLanguage={localizations.data.localization.language}
                   />
                   {children}
-                  <Toaster
-                    position="top-center"
-                    richColors={true}
-                    offset={10}
-                    duration={3000}
-                  />
+                  <Toaster offset={10} duration={3000} />
                   <MobileNav collections={collections.data.menu} />
-                  <Footer footerMenu={footerMenu.data.menu} />
+                  <Footer
+                    helpAndSupportMenu={helpAndSupportMenu.data.menu}
+                    policyMenu={policyMenu.data.menu}
+                  />
                 </Sheet>
               </CurrencyContextProvider>
             </Suspense>
