@@ -35,3 +35,17 @@
 .shopify-render-text > ul > li {
   margin-top: 0.5rem;
 }
+.shopify-render-text table {
+  max-width: 90vw;
+}
+.shopify-render-text tbody {
+  display: flex;
+  flex-direction: column;
+}
+.shopify-render-text tbody tr {
+  display: flex;
+  gap: 1rem;
+}
+.shopify-render-text tbody tr td {
+  width: fit-content !important;
+}
