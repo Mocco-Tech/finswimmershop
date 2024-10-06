@@ -1,12 +1,12 @@
-import Link from 'next/link';
-import React from 'react';
-import Logo from '../Logo';
-import { MenuType } from '@/types/MenuType';
-import { cutPagesMenuLink } from '@/lib/helpers';
-import Image from 'next/image';
-import { cn } from '@/lib/utils';
-import { SubscribeToNewsletterBlock } from './SubscribeToNewsletterBlock';
-import { createCustomer } from '@/shopify/queries/createCustomer';
+import Link from "next/link";
+import React from "react";
+import Logo from "../Logo";
+import { MenuType } from "@/types/MenuType";
+import { cutPagesMenuLink } from "@/lib/helpers";
+import Image from "next/image";
+import { cn } from "@/lib/utils";
+import { SubscribeToNewsletterBlock } from "./SubscribeToNewsletterBlock";
+import { createCustomer } from "@/shopify/queries/createCustomer";
 
 export default function FooterTop({
   helpAndSupportMenu,
@@ -16,10 +16,10 @@ export default function FooterTop({
   policyMenu: MenuType;
 }) {
   const emailSubmit = async (formdata: FormData) => {
-    'use server';
+    "use server";
 
-    if (formdata.get('email')) {
-      const customer = await createCustomer(formdata.get('email') as string);
+    if (formdata.get("email")) {
+      const customer = await createCustomer(formdata.get("email") as string);
     }
   };
 
@@ -43,10 +43,10 @@ export default function FooterTop({
         <div className="flex justify-between flex-wrap flex-col sm:flex-row gap-5">
           <div className="flex flex-col gap-3">
             <FooterMenuBlock
-              menu={helpAndSupportMenu.items}
+              menu={helpAndSupportMenu.items!}
               menuTitle="Help and support:"
             />
-            <FooterMenuBlock menu={policyMenu.items} menuTitle="Our policy" />
+            <FooterMenuBlock menu={policyMenu.items!} menuTitle="Our policy" />
           </div>
           <div className="flex flex-col gap-3 text-left lg:text-right">
             <CompanyDetailsBlock detail="Email: office@finswimmershop.com" />
@@ -82,7 +82,21 @@ const FooterMenuBlock = ({
   menu,
   menuTitle,
 }: {
-  menu: MenuType[];
+  menu: {
+    id: string;
+    title: string;
+    url: string;
+    items: {
+      id: string;
+      title: string;
+      url: string;
+      items: {
+        id: string;
+        title: string;
+        url: string;
+      }[];
+    }[];
+  }[];
   menuTitle: string;
 }) => (
   <div className="flex flex-col md:flex-row gap-4 items-start md:items-center mb-8 md:mb-0">
@@ -98,7 +112,7 @@ const FooterMenuBlock = ({
           </Link>
         </li>
       ))}
-      {menuTitle === 'Help and support:' && (
+      {menuTitle === "Help and support:" && (
         <>
           <li>
             <Link
@@ -130,7 +144,7 @@ const CompanyDetailsBlock = ({
   detail: string;
   className?: string;
 }) => (
-  <p className={cn('block cursor-default text-slate-500/80', className)}>
+  <p className={cn("block cursor-default text-slate-500/80", className)}>
     {detail}
   </p>
 );

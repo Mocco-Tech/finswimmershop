@@ -1,16 +1,16 @@
-import React from 'react';
-import Link from 'next/link';
+import React from "react";
+import Link from "next/link";
 
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from '@/components/ui/tooltip';
-import NavItemHasChild from './NavItemHasChild';
-import NavItem from './NavItem';
-import { cutMenuLink, cutPagesMenuLink } from '@/lib/helpers';
-import { MenuType } from '@/types/MenuType';
+} from "@/components/ui/tooltip";
+import NavItemHasChild from "./NavItemHasChild";
+import NavItem from "./NavItem";
+import { cutMenuLink, cutPagesMenuLink } from "@/lib/helpers";
+import { MenuType } from "@/types/MenuType";
 
 export default function HeaderNav({
   collections,
