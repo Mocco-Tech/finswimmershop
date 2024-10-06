@@ -1,4 +1,4 @@
-import { getData } from '../getData';
+import { getData } from "../getData";
 
 export async function getCollection(handle: string) {
   const Collection = `#graphql
@@ -18,6 +18,7 @@ export async function getCollection(handle: string) {
           node {
             handle
             title
+            description
             priceRange {
               minVariantPrice {
                 amount

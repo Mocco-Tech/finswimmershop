@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title><![CDATA[Products RSS Feed]]></title>
+        <description><![CDATA[Finswimmershop products feed]]></description>
+        <link>http://localhost:3000</link>
+        <image>
+            <url>http://localhost:3000/logo.jpeg</url>
+            <title>Products RSS Feed</title>
+            <link>http://localhost:3000</link>
+        </image>
+        <generator>RSS for Node</generator>
+        <lastBuildDate>Sat, 05 Oct 2024 15:46:31 GMT</lastBuildDate>
+        <atom:link href="http://localhost:3000/rss.xml" rel="self" type="application/rss+xml"/>
+        <pubDate>Sat, 05 Oct 2024 15:46:31 GMT</pubDate>
+        <copyright><![CDATA[All rights reserved 2024]]></copyright>
+        <item>
+            <title><![CDATA[WaterWay Model 1 Monofin]]></title>
+            <description><![CDATA[WaterWay Model 1 Monofin]]></description>
+            <link>http://localhost:3000/product/waterway-model-1-monofin</link>
+            <guid isPermaLink="true">http://localhost:3000/product/waterway-model-1-monofin</guid>
+            <pubDate>Sat, 20 Jul 2024 10:41:51 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[WaterWay Model 2 Monofin]]></title>
+            <description><![CDATA[WaterWay Model 2 Monofin]]></description>
+            <link>http://localhost:3000/product/waterway-model-2-monofin</link>
+            <guid isPermaLink="true">http://localhost:3000/product/waterway-model-2-monofin</guid>
+            <pubDate>Sat, 20 Jul 2024 10:44:33 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[WaterWay Model 3 Monofin]]></title>
+            <description><![CDATA[WaterWay Model 3 Monofin]]></description>
+            <link>http://localhost:3000/product/waterway-model-3-monofin</link>
+            <guid isPermaLink="true">http://localhost:3000/product/waterway-model-3-monofin</guid>
+            <pubDate>Sat, 20 Jul 2024 10:46:31 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[WaterWay Model 1 Blue Monofin]]></title>
+            <description><![CDATA[WaterWay Model 1 Blue Monofin]]></description>
+            <link>http://localhost:3000/product/waterway-model-1-blue-monofin</link>
+            <guid isPermaLink="true">http://localhost:3000/product/waterway-model-1-blue-monofin</guid>
+            <pubDate>Sat, 20 Jul 2024 10:49:44 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[WaterWay Model 1 Carbon Monofin]]></title>
+            <description><![CDATA[WaterWay Model 1 Carbon Monofin]]></description>
+            <link>http://localhost:3000/product/waterway-model-1-carbon-monofin</link>
+            <guid isPermaLink="true">http://localhost:3000/product/waterway-model-1-carbon-monofin</guid>
+            <pubDate>Sat, 20 Jul 2024 10:50:53 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[WaterWay Model 1 Pink Monofin]]></title>
+            <description><![CDATA[WaterWay Model 1 Pink Monofin]]></description>
+            <link>http://localhost:3000/product/waterway-model-1-pink-monofin</link>
+            <guid isPermaLink="true">http://localhost:3000/product/waterway-model-1-pink-monofin</guid>
+            <pubDate>Sat, 20 Jul 2024 10:51:26 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[WaterWay Monofin For Kids]]></title>
+            <description><![CDATA[WaterWay Monofin For Kids]]></description>
+            <link>http://localhost:3000/product/waterway-monofin-for-kids</link>
+            <guid isPermaLink="true">http://localhost:3000/product/waterway-monofin-for-kids</guid>
+            <pubDate>Sat, 20 Jul 2024 10:57:17 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[WaterWay Kids Wave Monofin]]></title>
+            <description><![CDATA[WaterWay Kids Wave Monofin]]></description>
+            <link>http://localhost:3000/product/waterway-kids-wave-monofin</link>
+            <guid isPermaLink="true">http://localhost:3000/product/waterway-kids-wave-monofin</guid>
+            <pubDate>Sat, 20 Jul 2024 11:03:56 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[WaterWay Monofin DoZo]]></title>
+            <description><![CDATA[WaterWay Monofin DoZo]]></description>
+            <link>http://localhost:3000/product/waterway-monofin-dozo</link>
+            <guid isPermaLink="true">http://localhost:3000/product/waterway-monofin-dozo</guid>
+            <pubDate>Sat, 20 Jul 2024 11:37:40 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[Powerfins Rubber Monofin]]></title>
+            <description><![CDATA[Powerfins Rubber Monofin]]></description>
+            <link>http://localhost:3000/product/powerfins-rubber-monofin</link>
+            <guid isPermaLink="true">http://localhost:3000/product/powerfins-rubber-monofin</guid>
+            <pubDate>Sat, 20 Jul 2024 11:43:31 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[Oceaner Fiber Monofin]]></title>
+            <description><![CDATA[Oceaner Fiber Monofin]]></description>
+            <link>http://localhost:3000/product/oceaner-fiber-monofin</link>
+            <guid isPermaLink="true">http://localhost:3000/product/oceaner-fiber-monofin</guid>
+            <pubDate>Sat, 20 Jul 2024 12:02:33 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[Oceaner Fiber Carbon Monofin]]></title>
+            <description><![CDATA[Oceaner Fiber Carbon Monofin]]></description>
+            <link>http://localhost:3000/product/oceaner-fiber-carbon-monofin</link>
+            <guid isPermaLink="true">http://localhost:3000/product/oceaner-fiber-carbon-monofin</guid>
+            <pubDate>Sat, 20 Jul 2024 12:05:35 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[Rocketfin Model 1 training monofin]]></title>
+            <description><![CDATA[Rocketfin Model 1 training monofin]]></description>
+            <link>http://localhost:3000/product/rocketfin-fiberglass-training-monofin</link>
+            <guid isPermaLink="true">http://localhost:3000/product/rocketfin-fiberglass-training-monofin</guid>
+            <pubDate>Mon, 02 Sep 2024 21:13:38 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[Rocketfin Model 2 training monofin]]></title>
+            <description><![CDATA[Rocketfin Model 2 training monofin]]></description>
+            <link>http://localhost:3000/product/rocketfin-model-2-training-monofin</link>
+            <guid isPermaLink="true">http://localhost:3000/product/rocketfin-model-2-training-monofin</guid>
+            <pubDate>Mon, 02 Sep 2024 21:20:30 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[Rocketfin Model 3 training monofin]]></title>
+            <description><![CDATA[Rocketfin Model 3 training monofin]]></description>
+            <link>http://localhost:3000/product/rocketfin-model-3-training-monofin</link>
+            <guid isPermaLink="true">http://localhost:3000/product/rocketfin-model-3-training-monofin</guid>
+            <pubDate>Mon, 02 Sep 2024 21:26:31 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[Rocketfin Model 4 training monofin]]></title>
+            <description><![CDATA[Rocketfin Model 4 training monofin]]></description>
+            <link>http://localhost:3000/product/rocketfin-model-4-training-monofin</link>
+            <guid isPermaLink="true">http://localhost:3000/product/rocketfin-model-4-training-monofin</guid>
+            <pubDate>Mon, 02 Sep 2024 21:33:13 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[Rocketfin Model 5 training monofin]]></title>
+            <description><![CDATA[Rocketfin Model 5 training monofin]]></description>
+            <link>http://localhost:3000/product/rocketfin-model-5-training-monofin</link>
+            <guid isPermaLink="true">http://localhost:3000/product/rocketfin-model-5-training-monofin</guid>
+            <pubDate>Mon, 02 Sep 2024 21:35:01 GMT</pubDate>
+        </item>
+    </channel>
+</rss>

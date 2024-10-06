@@ -1,11 +1,11 @@
-import React from 'react';
-import { Params } from 'next/dist/shared/lib/router/utils/route-matcher';
+import React from "react";
+import { Params } from "next/dist/shared/lib/router/utils/route-matcher";
 
-import { getCollection } from '@/shopify/queries/getCollection';
-import { CollectionType } from '@/types/CollectionType';
-import CollectionContent from '@/components/custom/collection/CollectionContent';
-import { getSortedProducts } from '@/lib/helpers';
-import { PER_PAGE } from '@/lib/consts';
+import { getCollection } from "@/shopify/queries/getCollection";
+import { CollectionType } from "@/types/CollectionType";
+import CollectionContent from "@/components/custom/collection/CollectionContent";
+import { getSortedProducts } from "@/lib/helpers";
+import { PER_PAGE } from "@/lib/consts";
 
 export const revalidate = 3600;
 
@@ -18,7 +18,7 @@ export default async function ProductCategoryPage({
 }) {
   const collection: CollectionType = await getCollection(params.handle);
 
-  const page = searchParams.page ?? '1';
+  const page = searchParams.page ?? "1";
   const start = (Number(page) - 1) * PER_PAGE;
   const end = start + PER_PAGE;
 
@@ -78,18 +78,18 @@ export async function generateMetadata({
     : collectionSeo?.description;
   const image = collectionSeo?.image?.src
     ? collectionSeo?.image?.src
-    : '/empty-category.jpg';
+    : "/empty-category.jpg";
 
   return {
     title: `${seoTitle} | Finswimmer Shop`,
     description: seoDescription,
 
-    metadataBase: new URL('https://www.finswimmershop.com'),
+    metadataBase: new URL("https://www.finswimmershop.com"),
     openGraph: {
       title: `${seoTitle} | Finswimmer Shop`,
       description: seoDescription,
       url: `https://www.finswimmershop.com/collections/${params?.handle}`,
-      siteName: 'Finswimmer Shop',
+      siteName: "Finswimmer Shop",
       images: [
         {
           url: image,
@@ -97,8 +97,8 @@ export async function generateMetadata({
           height: 600,
         },
       ],
-      locale: 'en_US',
-      type: 'website',
+      locale: "en_US",
+      type: "website",
     },
   };
 }
