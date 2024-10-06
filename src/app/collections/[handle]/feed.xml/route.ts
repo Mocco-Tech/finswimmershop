@@ -30,7 +30,7 @@ export async function GET(
         },
         shippingWeight: {
           unit: "kg",
-          value: 3,
+          value: Number(product.node.variants.edges[0].node.weight),
         },
         googleProductCategory: "6511",
         condition: "new",

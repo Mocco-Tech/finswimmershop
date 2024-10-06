@@ -25,6 +25,14 @@ export async function getCollection(handle: string) {
                 currencyCode
               }
             }
+            variants(first: 1) {
+              edges {
+                node {
+                  id
+                  weight
+                }
+              }
+            }
             images(first: 2) {
               edges {
                 node {
